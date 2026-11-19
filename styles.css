@@ -621,15 +621,14 @@ input::placeholder {
 }
 
 .newsletter button {
-  min-height: 50px;
   border: 0;
   border-radius: var(--radius-pill);
-  padding: var(--button-padding);
+  padding: 12px 24px;
   background: var(--btn-primary);
   color: var(--btn-text);
   font-family: var(--font-body);
-  font-size: var(--font-size-base);
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
 }
 
