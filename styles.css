@@ -302,9 +302,12 @@ input::placeholder {
 }
 
 .hero-copy .eyebrow {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  margin-bottom: 18px;
+  gap: 8px;
+  margin: 0 0 18px;
+  padding: 0;
+  line-height: 1;
   color: #F3EBE6;
 }
 
@@ -318,15 +321,18 @@ input::placeholder {
   text-transform: uppercase;
 }
 
-.hero-copy .eyebrow span {
-  display: inline-grid;
-  width: 16px;
-  height: 16px;
-  margin-right: 7px;
-  place-items: center;
+.hero-copy .eyebrow .badge-icon {
+  display: block;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
   color: #E8C9AE;
-  font-size: 15px;
-  letter-spacing: 0;
+}
+
+.hero-copy .eyebrow-label {
+  line-height: 1;
+  margin: 0;
+  padding: 0;
 }
 
 .hero h1 {
