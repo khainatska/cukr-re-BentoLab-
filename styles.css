@@ -720,6 +720,15 @@ input::placeholder {
   color: var(--placeholder);
 }
 
+.cake-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  object-fit: cover;
+}
+
 .cake-placeholder-icon {
   display: grid;
   width: 42px;
