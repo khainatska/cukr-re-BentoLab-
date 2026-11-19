@@ -3,33 +3,163 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Moje portfólio — začiatok</title>
-  <!-- Vzhľad stránky je v samostatnom súbore styles.css (vrstva CSS) -->
+  <title>BentoLab — Domov</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="BentoLab — Domov">
+        <span class="brand-mark">B</span>
+        <span class="brand-name"><span>Bento</span><span class="brand-accent">Lab</span></span>
+      </a>
 
-  <main class="uvitanie">
-    <div class="emoji">👋</div>
-    <h1>Tu vznikne moje portfólio</h1>
-    <p class="podtext">
-      Toto je štartová stránka kurzu <strong>Tvorba webstránok</strong>.
-      Odteraz ju budeš meniť ty — s pomocou AI asistenta.
-    </p>
+      <nav class="main-nav" aria-label="Hlavná navigácia">
+        <a class="active" href="index.html" aria-current="page">Domov</a>
+        <a href="#">Ponuka tort</a>
+        <a href="#">Vytvor si tortu</a>
+        <a href="#">Kontakt</a>
+      </nav>
 
-    <div class="karta">
-      <p class="karta-nadpis">Ako začať:</p>
-      <ol>
-        <li>Otvor <strong>Copilot Chat</strong> (ikona Copilota vpravo) — sem píšeš, čo chceš vytvoriť.</li>
-        <li>Tento súbor <code>index.html</code> si pozri v <strong>živom náhľade</strong>: pravý klik naň → <em>Show Preview</em>.</li>
-        <li>Choď na <strong>Blok 7</strong> kurzu a postupuj podľa neho.</li>
-      </ol>
+      <div class="header-actions">
+        <label class="search-box" aria-label="Hľadať">
+          <span class="search-icon" aria-hidden="true"></span>
+          <input type="search" placeholder="Hľadať..." autocomplete="off">
+        </label>
+        <button class="icon-button cart-button" type="button" aria-label="Košík">
+          <span class="cart-icon" aria-hidden="true"></span>
+          <span class="cart-count">2</span>
+        </button>
+        <button class="icon-button account-button" type="button" aria-label="Účet">
+          <span class="account-icon" aria-hidden="true"></span>
+        </button>
+      </div>
     </div>
+  </header>
 
-    <p class="poznamka">
-      Keď spravíš prvú zmenu, tento text pokojne zmaž — je len na úvod.
-    </p>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow"><span aria-hidden="true">♡</span> SPECIÁLNA PONUKA</p>
+          <h1 id="hero-title">Tvoja <br>predstava,<br><em>naša torta.</em></h1>
+          <p class="hero-description">
+            Vytvor si originálnu tortu podľa svojich predstáv. – My ju<br>
+            a teličku premenujeme na sladký stredový hudobný pozdrav.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#">Vytvoriť tortu &rarr;</a>
+            <a class="button button-secondary" href="#">Pozrieť ponuku</a>
+          </div>
+          <p class="availability"><span aria-hidden="true">✓</span> Bezplatný konzultácia</p>
+        </div>
+
+        <div class="hero-visual" aria-label="Náhľad torty BentoLab">
+          <div class="cake-card">
+            <span class="sparkle sparkle-one"></span>
+            <span class="sparkle sparkle-two"></span>
+            <span class="sparkle sparkle-three"></span>
+            <span class="sparkle sparkle-four"></span>
+            <span class="sparkle sparkle-five"></span>
+            <span class="sparkle sparkle-six"></span>
+            <div class="cake-box">
+              <span class="cake-dot dot-left"></span>
+              <span class="cake-dot dot-right"></span>
+              <span class="cake-line"></span>
+              <span class="cake-filling"></span>
+              <span class="cake-accent"></span>
+            </div>
+            <span class="cake-label">BentoLab ♥</span>
+          </div>
+          <p class="visual-note">A nášlab a láskou</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-it-works" aria-labelledby="how-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">OD NÁPADU PO SLADKÝ KÚSOK</p>
+          <h2 id="how-title">Ako to funguje</h2>
+        </div>
+        <p>Jednoduchý proces, výsledkom krása.</p>
+      </div>
+
+      <div class="steps-grid">
+        <article class="step-card">
+          <div class="step-card-top">
+            <span class="step-icon">&#9633;</span>
+            <span class="step-number">01</span>
+          </div>
+          <h3>Vyber si tortu</h3>
+          <p>Zadaj základné informácie a vyber si príchuť, farbu a nápis.</p>
+        </article>
+
+        <article class="step-card">
+          <div class="step-card-top">
+            <span class="step-icon">&#9902;</span>
+            <span class="step-number">02</span>
+          </div>
+          <h3>Prispôsob si dizajn</h3>
+          <p>Farbu, dekorácie a nápisy podľa. Niektoré detaili budeš prispôsobiť.</p>
+        </article>
+
+        <article class="step-card">
+          <div class="step-card-top">
+            <span class="step-icon">&#9993;</span>
+            <span class="step-number">03</span>
+          </div>
+          <h3>Odošli objednávku</h3>
+          <p>Skontroluj cenu a necháme vypísať. O vyzvá sa bude uprednostní.</p>
+        </article>
+      </div>
+    </section>
   </main>
 
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="BentoLab — Domov">
+          <span class="brand-mark">B</span>
+          <span class="brand-name"><span>Bento</span><span class="brand-accent">Lab</span></span>
+        </a>
+        <p>
+          Pečieme s láskou a dôrazom na každý detail. Naše torty sú ručne
+          vyrobené a vytvárajú skúsenosti na každej oslave.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h2>Navigácia</h2>
+        <a href="index.html">Domov</a>
+        <a href="#">Ponuka tort</a>
+        <a href="#">Vytvor si tortu</a>
+        <a href="#">Kontakt</a>
+      </div>
+
+      <div class="footer-column footer-contact">
+        <h2>Kontakt</h2>
+        <p><span aria-hidden="true">☎</span> +421 900 000 000</p>
+        <p><span aria-hidden="true">✉</span> info@bentolab.sk</p>
+        <p><span aria-hidden="true">⌖</span> Hlavná 123, 811 01 Bratislava</p>
+      </div>
+
+      <div class="footer-column footer-social">
+        <h2>Sledujte nás</h2>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">◎</a>
+          <a href="#" aria-label="Facebook">f</a>
+        </div>
+        <form class="newsletter" action="#" method="post">
+          <label class="sr-only" for="newsletter-email">E-mail</label>
+          <input id="newsletter-email" type="email" placeholder="Váš e-mail">
+          <button type="submit">Odoberať novinky</button>
+        </form>
+      </div>
+    </div>
+    <p class="copyright">© 2026 BentoLab. Všetky práva vyhradené. | Vytvorené s láskou.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
