@@ -100,7 +100,6 @@ input::placeholder {
 }
 
 .header-inner,
-.hero-inner,
 .how-it-works,
 .footer-inner,
 .copyright {
@@ -262,10 +261,12 @@ input::placeholder {
 
 .hero {
   position: relative;
+  width: min(1180px, calc(100% - 64px));
   min-height: 560px;
+  margin: 24px auto 0;
   overflow: hidden;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border-card);
+  border-radius: 24px;
+  background: #1e0f08;
 }
 
 .hero-image {
@@ -278,21 +279,33 @@ input::placeholder {
   object-position: 70% center;
 }
 
+.hero::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(30, 15, 8, 0.95) 0%, rgba(30, 15, 8, 0.85) 35%, rgba(30, 15, 8, 0) 70%);
+  content: "";
+}
+
 .hero-inner {
   position: relative;
-  z-index: 1;
-  min-height: 560px;
+  z-index: 2;
+  width: 100%;
+  min-height: inherit;
   display: flex;
   align-items: center;
-  padding: 40px 0;
+  padding: 48px;
 }
 
 .hero-copy {
   width: min(520px, 100%);
-  padding: 40px;
-  border: 1px solid var(--border-card);
-  border-radius: var(--radius-card);
-  background: var(--card);
+}
+
+.hero-copy .eyebrow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+  color: #F3EBE6;
 }
 
 .eyebrow {
@@ -307,34 +320,38 @@ input::placeholder {
 
 .hero-copy .eyebrow span {
   display: inline-grid;
-  width: 19px;
-  height: 19px;
+  width: 16px;
+  height: 16px;
   margin-right: 7px;
   place-items: center;
-  border-radius: var(--radius-circle);
-  background: var(--block);
-  font-size: 10px;
+  color: #E8C9AE;
+  font-size: 15px;
   letter-spacing: 0;
 }
 
 .hero h1 {
   margin: 0;
-  color: var(--text);
+  color: #FFF8F2;
   font-size: var(--font-size-h1);
-  line-height: 1.15;
-  letter-spacing: var(--letter-spacing);
+  line-height: 1.12;
+  letter-spacing: 0;
   font-weight: 700;
 }
 
+.hero h1 span,
 .hero h1 em {
-  color: var(--accent);
-  font-weight: 700;
+  display: block;
+}
+
+.hero h1 em {
+  color: #E8C9AE;
+  font-weight: 400;
 }
 
 .hero-description {
   max-width: 520px;
-  margin: 28px 0 24px;
-  color: var(--text-secondary);
+  margin: 22px 0 26px;
+  color: #E9DDD5;
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.65;
@@ -363,10 +380,10 @@ input::placeholder {
   color: var(--btn-text);
 }
 
-.button-secondary {
-  border: 1px solid var(--border);
+.hero .button-secondary {
+  border: 1px solid rgba(255, 248, 242, 0.7);
   background: transparent;
-  color: var(--border);
+  color: #FFF8F2;
 }
 
 .button-primary:hover,
@@ -374,8 +391,8 @@ input::placeholder {
   background: var(--btn-primary-hover);
 }
 
-.button-secondary:hover {
-  background: var(--block);
+.hero .button-secondary:hover {
+  background: rgba(255, 248, 242, 0.12);
 }
 
 .availability {
@@ -383,7 +400,7 @@ input::placeholder {
   align-items: center;
   width: fit-content;
   margin: 18px 0 0;
-  color: var(--text-secondary);
+  color: #E9DDD5;
   font-family: var(--font-body);
   font-size: 11px;
 }
@@ -394,9 +411,9 @@ input::placeholder {
   height: 18px;
   margin-right: 7px;
   place-items: center;
-  border: 1px solid var(--accent);
+  border: 1px solid rgba(233, 221, 213, 0.8);
   border-radius: var(--radius-circle);
-  color: var(--accent);
+  color: #E9DDD5;
   font-size: 10px;
 }
 
@@ -618,7 +635,6 @@ input::placeholder {
 
 @media (max-width: 980px) {
   .header-inner,
-  .hero-inner,
   .how-it-works,
   .footer-inner,
   .copyright {
@@ -652,7 +668,6 @@ input::placeholder {
   }
 
   .header-inner,
-  .hero-inner,
   .how-it-works,
   .footer-inner,
   .copyright {
@@ -664,10 +679,6 @@ input::placeholder {
   }
 
   .search-box {
-    display: none;
-  }
-
-  .hero-description br {
     display: none;
   }
 
@@ -712,8 +723,27 @@ input::placeholder {
 }
 
 @media (max-width: 768px) {
+  .hero {
+    width: calc(100% - 32px);
+    min-height: 560px;
+    margin-top: 16px;
+  }
+
+  .hero::after {
+    background: linear-gradient(180deg, rgba(30, 15, 8, 0.92) 0%, rgba(30, 15, 8, 0.6) 58%, rgba(30, 15, 8, 0.2) 100%);
+  }
+
+  .hero-inner {
+    align-items: flex-start;
+    padding: 32px 24px;
+  }
+
   .hero-copy {
-    padding: 24px;
+    width: min(520px, 100%);
+  }
+
+  .hero h1 {
+    font-size: 40px;
   }
 
   .hero-actions {
