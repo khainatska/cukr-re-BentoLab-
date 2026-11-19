@@ -498,6 +498,7 @@ input::placeholder {
   font-family: var(--font-heading);
   font-size: 20px;
   font-weight: 700;
+  font-variant-numeric: lining-nums;
 }
 
 .step-card h3 {
