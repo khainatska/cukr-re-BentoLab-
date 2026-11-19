@@ -523,7 +523,7 @@ input::placeholder {
 .footer-inner {
   min-height: 220px;
   display: grid;
-  grid-template-columns: 1.35fr 0.75fr 1fr 1fr;
+  grid-template-columns: 1.4fr repeat(3, 1fr);
   gap: 52px;
   padding: 38px 0 28px;
 }
@@ -565,8 +565,9 @@ input::placeholder {
 .footer-column h2 {
   margin: 4px 0 10px;
   color: var(--text);
-  font-size: var(--font-size-h2);
-  font-weight: 700;
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: var(--letter-spacing);
 }
 
