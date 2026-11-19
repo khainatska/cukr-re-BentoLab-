@@ -478,8 +478,19 @@ input::placeholder {
   place-items: center;
   border-radius: var(--radius-circle);
   background: var(--block);
-  font-family: var(--font-body);
-  font-size: 18px;
+}
+
+.ui-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex: none;
+  color: var(--accent);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .step-number {
@@ -563,11 +574,10 @@ input::placeholder {
   line-height: 1.8;
 }
 
-.footer-contact p span {
+.footer-contact .ui-icon {
   display: inline-block;
-  min-width: 20px;
-  color: var(--accent);
-  text-align: center;
+  margin-right: 4px;
+  vertical-align: middle;
 }
 
 .social-links {
