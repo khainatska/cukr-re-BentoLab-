@@ -231,7 +231,8 @@ input::placeholder {
   cursor: default;
 }
 
-.cart-icon {
+.cart-icon,
+.account-icon {
   position: absolute;
   left: 5px;
   top: 9px;
@@ -257,28 +258,6 @@ input::placeholder {
   color: var(--btn-text);
   font-family: var(--font-body);
   font-size: 9px;
-}
-
-.account-icon {
-  position: absolute;
-  left: 8px;
-  top: 10px;
-  width: 16px;
-  height: 16px;
-  border: 1.5px solid var(--placeholder);
-  border-radius: var(--radius-circle);
-}
-
-.account-icon::after {
-  content: "";
-  position: absolute;
-  left: -3px;
-  bottom: -8px;
-  width: 20px;
-  height: 10px;
-  border: 1.5px solid var(--placeholder);
-  border-bottom: 0;
-  border-radius: 12px 12px 0 0;
 }
 
 .hero {
