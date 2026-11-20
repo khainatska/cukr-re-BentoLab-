@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BentoLab — Vytvor si tortu</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="BentoLab — Domov">
+        <span class="brand-mark">B</span>
+        <span class="brand-name"><span>Bento</span><span class="brand-accent">Lab</span></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Hlavná navigácia">
+        <a href="index.html">Domov</a>
+        <a href="ponuka.html">Ponuka tort</a>
+        <a class="active" href="konfigurator.html" aria-current="page">Vytvor si tortu</a>
+        <a href="#">Kontakt</a>
+      </nav>
+
+      <div class="header-actions">
+        <label class="search-box" aria-label="Hľadať">
+          <span class="search-icon" aria-hidden="true"></span>
+          <input type="search" placeholder="Hľadať..." autocomplete="off">
+        </label>
+        <button class="icon-button cart-button" type="button" aria-label="Košík">
+          <svg class="cart-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 4h2l2.5 11h11.2l2-7H6.1" />
+            <circle cx="9.5" cy="19" r="1.25" />
+            <circle cx="17.5" cy="19" r="1.25" />
+          </svg>
+          <span class="cart-count">2</span>
+        </button>
+        <button class="icon-button account-button" type="button" aria-label="Účet">
+          <svg class="account-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="7.5" r="3.25" />
+            <path d="M4 20c.8-3.5 3.7-5.5 8-5.5s7.2 2 8 5.5" />
+          </svg>
+        </button>
+        <button class="icon-button menu-toggle" type="button" aria-label="Otvoriť menu" aria-expanded="false" aria-controls="menu">
+          <svg class="menu-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="menu-icon-open" d="M4 6h16M4 12h16M4 18h16" />
+            <path class="menu-icon-close" d="m6 6 12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="menu" aria-label="Mobilná navigácia" hidden>
+      <a href="index.html">Domov</a>
+      <a href="ponuka.html">Ponuka tort</a>
+      <a class="active" href="konfigurator.html" aria-current="page">Vytvor si tortu</a>
+      <a href="#">Kontakt</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="builder-page" aria-labelledby="builder-title">
+      <header class="builder-heading">
+        <p class="eyebrow"><span aria-hidden="true">✦</span> VAŠA TORTA, VAŠE PRAVIDLÁ</p>
+        <h1 id="builder-title">Vytvor si tortu</h1>
+        <p>Poskladajte si tortu presne podľa svojej predstavy. My ju potom s láskou upečieme.</p>
+      </header>
+
+      <div class="builder-layout">
+        <figure class="cake-preview">
+          <div class="cake-preview-panel">
+            <div class="preview-label"><span aria-hidden="true">♥</span> Náhľad vašej torty</div>
+            <div class="preview-cake" data-color="rose" aria-hidden="true">
+              <span class="preview-decoration">✿</span>
+              <div class="preview-top"></div>
+              <div class="preview-layer">
+                <span class="preview-inscription">BentoLab</span>
+              </div>
+              <div class="preview-filling"></div>
+              <div class="preview-base">Čokoláda a maliny</div>
+              <div class="preview-shadow"></div>
+            </div>
+          </div>
+          <figcaption>Náhľad je ilustračný. Každý detail doladíme ručne.</figcaption>
+        </figure>
+
+        <section class="config-card" aria-labelledby="config-title">
+          <div class="config-card-heading">
+            <div>
+              <p class="eyebrow">KONFIGURÁTOR</p>
+              <h2 id="config-title">Váš návrh</h2>
+            </div>
+            <span class="step-count">4 kroky</span>
+          </div>
+
+          <form id="cake-configurator">
+            <fieldset class="config-step">
+              <legend><span class="step-index">1</span> Veľkosť a príchuť</legend>
+              <div class="size-options">
+                <label class="size-option">
+                  <input class="config-choice" type="radio" name="size" value="S" data-portions="6–8 porcií">
+                  <span class="size-option-content"><strong>S</strong><small>6–8 porcií</small></span>
+                </label>
+                <label class="size-option">
+                  <input class="config-choice" type="radio" name="size" value="M" data-portions="10–12 porcií" checked>
+                  <span class="size-option-content"><strong>M</strong><small>10–12 porcií</small></span>
+                </label>
+                <label class="size-option">
+                  <input class="config-choice" type="radio" name="size" value="L" data-portions="16–20 porcií">
+                  <span class="size-option-content"><strong>L</strong><small>16–20 porcií</small></span>
+                </label>
+              </div>
+              <label class="field-label" for="cake-flavor">Príchuť</label>
+              <select class="config-select config-choice" id="cake-flavor" name="flavor">
+                <option selected>Čokoláda a maliny</option>
+                <option>Vanilkový obláčik</option>
+                <option>Pistáciový sen</option>
+                <option>Slaný karamel</option>
+              </select>
+            </fieldset>
+
+            <fieldset class="config-step">
+              <legend><span class="step-index">2</span> Farba a dekorácia</legend>
+              <div class="color-options">
+                <label class="color-option">
+                  <input class="config-choice" type="radio" name="color" value="Jemná ružová" data-color="rose" checked>
+                  <span class="color-option-content"><span class="color-swatch swatch-rose"></span><span>Jemná ružová</span></span>
+                </label>
+                <label class="color-option">
+                  <input class="config-choice" type="radio" name="color" value="Marhuľová" data-color="apricot">
+                  <span class="color-option-content"><span class="color-swatch swatch-apricot"></span><span>Marhuľová</span></span>
+                </label>
+                <label class="color-option">
+                  <input class="config-choice" type="radio" name="color" value="Púdrová modrá" data-color="blue">
+                  <span class="color-option-content"><span class="color-swatch swatch-blue"></span><span>Púdrová modrá</span></span>
+                </label>
+                <label class="color-option">
+                  <input class="config-choice" type="radio" name="color" value="Šalviová" data-color="sage">
+                  <span class="color-option-content"><span class="color-swatch swatch-sage"></span><span>Šalviová</span></span>
+                </label>
+              </div>
+              <div class="decoration-options">
+                <label class="decoration-option">
+                  <input class="config-choice" type="checkbox" name="decoration" value="Kvety" checked>
+                  <span>Kvety</span>
+                </label>
+                <label class="decoration-option">
+                  <input class="config-choice" type="checkbox" name="decoration" value="Perličky">
+                  <span>Perličky</span>
+                </label>
+                <label class="decoration-option">
+                  <input class="config-choice" type="checkbox" name="decoration" value="Mašľa">
+                  <span>Mašľa</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="config-step">
+              <legend><span class="step-index">3</span> Vlastný nápis</legend>
+              <label class="sr-only" for="cake-inscription">Vlastný nápis na torte</label>
+              <input class="config-input config-choice" id="cake-inscription" name="inscription" type="text" maxlength="32" placeholder="Napríklad: Všetko najlepšie!">
+              <p class="character-count"><span id="characters-remaining">32</span>/32 znakov</p>
+            </fieldset>
+
+            <fieldset class="config-step">
+              <legend><span class="step-index">4</span> Fotografia na jedlú potlač</legend>
+              <label class="upload-control" for="cake-photo">
+                <span class="upload-icon" aria-hidden="true">▧</span>
+                <span class="upload-copy"><strong>Nahrať fotografiu</strong><small>JPG alebo PNG · max. 10 MB</small></span>
+                <span class="upload-action" aria-hidden="true">⇧</span>
+              </label>
+              <input class="sr-only" id="cake-photo" name="photo" type="file" accept="image/jpeg,image/png">
+              <p class="upload-status" id="upload-status" aria-live="polite"></p>
+            </fieldset>
+
+            <div class="order-summary" aria-live="polite">
+              <div class="summary-price"><span>Orientačná cena</span><strong id="estimated-price" data-price="60">60 €</strong></div>
+              <p class="summary-details" id="summary-details" aria-live="polite"></p>
+              <p class="summary-note">Cena sa môže upraviť podľa finálneho návrhu a počtu porcií.</p>
+              <button class="button button-primary order-button" type="button" id="add-config-to-cart">Pokračovať k objednávke <span aria-hidden="true">→</span></button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="BentoLab — Domov">
+          <span class="brand-mark">B</span>
+          <span class="brand-name"><span>Bento</span><span class="brand-accent">Lab</span></span>
+        </a>
+        <p>
+          Pečieme s láskou a dôrazom na každý detail. Naše torty sú našou vášňou,
+          ale aj nezabudnuteľné chvíle.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h2>Navigácia</h2>
+        <a href="index.html">Domov</a>
+        <a href="ponuka.html">Ponuka tort</a>
+        <a href="konfigurator.html" aria-current="page">Vytvor si tortu</a>
+        <a href="#">Kontakt</a>
+      </div>
+
+      <div class="footer-column footer-contact">
+        <h2>Kontakt</h2>
+        <p>
+          <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6.5 3.5h3l1.5 4-2 1.5a15 15 0 0 0 6 6l1.5-2 4 1.5v3c0 1.1-.9 2-2 2C10 19.5 4.5 14 4.5 5.5c0-1.1.9-2 2-2Z" />
+          </svg>
+          +421 900 000 000
+        </p>
+        <p>
+          <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="m4 7 8 6 8-6" />
+          </svg>
+          info@bentolab.sk
+        </p>
+        <p>
+          <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+            <circle cx="12" cy="10" r="2.5" />
+          </svg>
+          Hlavná 123, 811 01 Bratislava
+        </p>
+      </div>
+
+      <div class="footer-column footer-social">
+        <h2>Sledujte nás</h2>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.8" r=".7" />
+            </svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14.5 20v-7h2.3l.4-2.7h-2.7V8.6c0-.8.3-1.3 1.4-1.3h1.4V4.9c-.7-.1-1.4-.2-2.1-.2-2.1 0-3.6 1.3-3.6 3.7v1.9H9.2V13h2.4v7" />
+            </svg>
+          </a>
+        </div>
+        <form class="newsletter" action="#" method="post">
+          <label class="sr-only" for="newsletter-email">E-mail</label>
+          <input id="newsletter-email" type="email" placeholder="Váš e-mail">
+          <button type="submit">Odoberať novinky</button>
+        </form>
+      </div>
+    </div>
+    <p class="copyright">© 2025 BentoLab. Všetky práva vyhradené. Vytvorené s láskou.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="konfigurator.js"></script>
+</body>
+</html>
