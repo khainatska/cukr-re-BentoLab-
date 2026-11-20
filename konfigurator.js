@@ -3,7 +3,7 @@ const configurator = document.querySelector("#cake-configurator");
 if (configurator) {
   const summaryDetails = document.querySelector("#summary-details");
   const estimatedPrice = document.querySelector("#estimated-price");
-  const characterCount = document.querySelector("#characters-remaining");
+  const characterCount = document.querySelector("#characters-written");
   const inscriptionInput = document.querySelector("#cake-inscription");
   const flavorSelect = document.querySelector("#cake-flavor");
   const previewCake = document.querySelector(".preview-cake");
@@ -31,7 +31,7 @@ if (configurator) {
 
     summaryDetails.textContent = details.join(" · ");
     estimatedPrice.textContent = `${estimatedPrice.dataset.price} €`;
-    previewCake.dataset.color = color?.dataset.color ?? "rose";
+    previewCake.dataset.color = color?.dataset.color ?? "caramel";
     previewBase.textContent = flavorSelect.value;
     previewInscription.textContent = inscriptionInput.value.trim() || "BentoLab";
   };
@@ -41,7 +41,7 @@ if (configurator) {
   });
 
   inscriptionInput.addEventListener("input", () => {
-    characterCount.textContent = String(inscriptionInput.maxLength - inscriptionInput.value.length);
+    characterCount.textContent = String(inscriptionInput.value.length);
     updateSummary();
   });
 
@@ -77,5 +77,6 @@ if (configurator) {
     cartButton.setAttribute("aria-label", `Košík, položiek: ${nextCount}`);
   });
 
+  characterCount.textContent = String(inscriptionInput.value.length);
   updateSummary();
 }

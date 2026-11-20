@@ -886,16 +886,18 @@ input::placeholder {
   min-width: 0;
   max-width: 100%;
   margin-inline: auto;
-  padding: 38px 0 64px;
+  padding: 56px 0 80px;
 }
 
 .builder-heading {
-  max-width: 680px;
-  margin-bottom: 32px;
+  max-width: 760px;
+  margin-bottom: 40px;
 }
 
 .builder-heading .eyebrow {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  letter-spacing: 0.12em;
 }
 
 .builder-heading h1 {
@@ -908,13 +910,15 @@ input::placeholder {
 .builder-heading > p:last-child {
   margin: 0;
   color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-body);
 }
 
 .builder-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   align-items: start;
-  gap: 48px;
+  gap: 40px;
   min-width: 0;
   max-width: 100%;
 }
@@ -950,7 +954,7 @@ input::placeholder {
   border-radius: var(--radius-pill);
   background: var(--card);
   color: var(--text-secondary);
-  font-size: 11px;
+  font-size: 14px;
   transform: translateX(-50%);
   white-space: nowrap;
 }
@@ -969,15 +973,15 @@ input::placeholder {
   margin-top: 16%;
 }
 
-.preview-cake[data-color="apricot"] {
+.preview-cake[data-color="chocolate"] {
   --cake-icing: var(--btn-primary);
 }
 
-.preview-cake[data-color="blue"] {
-  --cake-icing: var(--text-secondary);
+.preview-cake[data-color="latte"] {
+  --cake-icing: var(--placeholder);
 }
 
-.preview-cake[data-color="sage"] {
+.preview-cake[data-color="vanilla"] {
   --cake-icing: var(--card);
   --cake-ink: var(--text);
 }
@@ -1071,14 +1075,14 @@ input::placeholder {
 .cake-preview figcaption {
   margin-top: 12px;
   color: var(--text-secondary);
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
 }
 
 .config-card {
   min-width: 0;
   max-width: 100%;
-  padding: 24px;
+  padding: 32px;
   border: 1px solid var(--border-card);
   border-radius: var(--radius-card);
   background: var(--card);
@@ -1095,24 +1099,25 @@ input::placeholder {
 }
 
 .config-card-heading .eyebrow {
-  margin: 0 0 2px;
-  font-size: 9px;
+  margin: 0 0 4px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
 }
 
 .config-card-heading h2 {
   margin: 0;
   color: var(--text);
-  font-size: 26px;
+  font-size: var(--font-size-h2);
   line-height: 1.25;
 }
 
 .step-count {
   flex: none;
-  padding: 4px 9px;
+  padding: 6px 12px;
   border-radius: var(--radius-pill);
   background: var(--block);
   color: var(--text-secondary);
-  font-size: 10px;
+  font-size: 14px;
 }
 
 #cake-configurator {
@@ -1125,7 +1130,7 @@ input::placeholder {
   min-inline-size: 0;
   max-width: 100%;
   margin: 0;
-  padding: 14px 0;
+  padding: 20px 0;
   border: 0;
   border-bottom: 1px solid var(--border-card);
 }
@@ -1134,23 +1139,23 @@ input::placeholder {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 0 0 10px;
+  gap: 10px;
+  padding: 0 0 12px;
   color: var(--text);
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 700;
 }
 
 .step-index {
-  width: 20px;
-  height: 20px;
-  flex: 0 0 20px;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
   display: inline-grid;
   place-items: center;
   border-radius: var(--radius-circle);
   background: var(--block);
   color: var(--accent);
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .size-options {
@@ -1183,12 +1188,12 @@ input::placeholder {
 }
 
 .size-option-content {
-  min-height: 54px;
+  min-height: 72px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1px;
+  gap: 4px;
   border: 1px solid var(--border-card);
   border-radius: var(--radius-field);
   background: var(--card);
@@ -1196,12 +1201,12 @@ input::placeholder {
 }
 
 .size-option-content strong {
-  font-size: 12px;
+  font-size: 20px;
 }
 
 .size-option-content small {
   color: var(--text-secondary);
-  font-size: 9px;
+  font-size: 13px;
   line-height: 1.4;
 }
 
@@ -1220,9 +1225,9 @@ input::placeholder {
 
 .field-label {
   display: block;
-  margin: 10px 0 5px;
-  color: var(--text-secondary);
-  font-size: 11px;
+  margin: 16px 0 8px;
+  color: var(--text);
+  font-size: var(--font-size-base);
 }
 
 .config-select,
@@ -1230,79 +1235,81 @@ input::placeholder {
   width: 100%;
   min-width: 0;
   max-width: 100%;
-  min-height: 40px;
-  padding: 8px 11px;
-  border: 1px solid var(--border-card);
-  border-radius: var(--radius-small);
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-field);
   background: var(--card);
-  color: var(--text-secondary);
+  color: var(--text);
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: var(--font-size-base);
 }
 
 .color-options {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 6px;
+  gap: 8px;
   min-width: 0;
 }
 
 .color-option-content {
-  min-height: 64px;
+  min-height: 88px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  border: 1px solid transparent;
-  border-radius: var(--radius-small);
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-field);
+  background: var(--card);
   color: var(--text-secondary);
-  font-size: 9px;
-  line-height: 1.3;
+  font-size: 13px;
+  line-height: 1.4;
   text-align: center;
 }
 
 .color-swatch {
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   border: 2px solid var(--card);
   border-radius: var(--radius-circle);
   box-shadow: 0 0 0 1px var(--border-card);
 }
 
-.swatch-rose {
+.swatch-caramel {
   background: var(--accent);
 }
 
-.swatch-apricot {
+.swatch-chocolate {
+  background: var(--btn-primary);
+}
+
+.swatch-latte {
   background: var(--placeholder);
 }
 
-.swatch-blue {
-  background: var(--text-secondary);
-}
-
-.swatch-sage {
-  background: var(--block);
+.swatch-vanilla {
+  background: var(--card);
 }
 
 .decoration-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 7px;
+  gap: 8px;
+  margin-top: 12px;
 }
 
 .decoration-option > span {
-  min-height: 27px;
+  min-height: 38px;
   display: flex;
   align-items: center;
-  padding: 4px 10px;
+  padding: 6px 14px;
   border: 1px solid var(--border-card);
   border-radius: var(--radius-pill);
   background: var(--card);
   color: var(--text-secondary);
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .config-choice[type="checkbox"]:checked + span {
@@ -1316,19 +1323,19 @@ input::placeholder {
 }
 
 .character-count {
-  margin: 4px 0 0;
+  margin: 6px 0 0;
   color: var(--text-secondary);
-  font-size: 9px;
+  font-size: 14px;
   text-align: right;
 }
 
 .upload-control {
-  min-height: 54px;
+  min-height: 72px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 9px 12px;
-  border: 1px solid var(--border-card);
+  gap: 14px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
   border-radius: var(--radius-field);
   background: var(--card);
   color: var(--text-secondary);
@@ -1338,7 +1345,7 @@ input::placeholder {
 .upload-icon,
 .upload-action {
   color: var(--accent);
-  font-size: 17px;
+  font-size: 22px;
 }
 
 .upload-copy {
@@ -1351,19 +1358,19 @@ input::placeholder {
 
 .upload-copy strong {
   color: var(--text);
-  font-size: 10px;
+  font-size: 16px;
 }
 
 .upload-copy small {
   color: var(--text-secondary);
-  font-size: 9px;
+  font-size: 14px;
 }
 
 .upload-status {
   min-height: 0;
   margin: 0;
   color: var(--text-secondary);
-  font-size: 10px;
+  font-size: 14px;
   overflow-wrap: anywhere;
 }
 
@@ -1372,8 +1379,8 @@ input::placeholder {
 }
 
 .order-summary {
-  margin-top: 14px;
-  padding: 14px;
+  margin-top: 20px;
+  padding: 20px;
   border: 1px solid var(--border-card);
   border-radius: var(--radius-field);
   background: var(--bg);
@@ -1385,32 +1392,32 @@ input::placeholder {
   justify-content: space-between;
   gap: 12px;
   color: var(--text-secondary);
-  font-size: 11px;
+  font-size: 16px;
 }
 
 .summary-price strong {
   color: var(--accent);
-  font-size: 20px;
+  font-size: 24px;
   white-space: nowrap;
 }
 
 .summary-details,
 .summary-note {
-  margin: 7px 0 0;
+  margin: 10px 0 0;
   color: var(--text-secondary);
-  font-size: 9px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: var(--line-height-body);
   overflow-wrap: anywhere;
 }
 
 .order-button {
   width: 100%;
-  min-height: 42px;
+  min-height: 50px;
   gap: 6px;
-  margin-top: 12px;
-  padding: 10px 16px;
+  margin-top: 16px;
+  padding: var(--button-padding);
   border: 0;
-  font-size: 11px;
+  font-size: var(--font-size-base);
   cursor: pointer;
 }
 
