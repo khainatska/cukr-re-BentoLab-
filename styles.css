@@ -932,7 +932,7 @@ input::placeholder {
 .cake-preview-panel {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1.35 / 1;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -944,7 +944,7 @@ input::placeholder {
 
 .preview-label {
   position: absolute;
-  top: 16%;
+  top: 6%;
   left: 50%;
   display: flex;
   align-items: center;
@@ -968,9 +968,8 @@ input::placeholder {
   --cake-icing: var(--accent);
   --cake-ink: var(--btn-text);
   position: relative;
-  width: min(270px, 72%);
+  width: min(440px, 88%);
   aspect-ratio: 1 / 0.72;
-  margin-top: 16%;
 }
 
 .preview-cake[data-color="chocolate"] {
@@ -1537,6 +1536,14 @@ input::placeholder {
 
   .config-card {
     padding: 18px;
+  }
+
+  .cake-preview-panel {
+    aspect-ratio: 1.15 / 1;
+  }
+
+  .preview-cake {
+    width: min(300px, 80%);
   }
 
   .hero-actions {
