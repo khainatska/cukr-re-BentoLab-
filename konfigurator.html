@@ -69,8 +69,10 @@
         <figure class="cake-preview">
           <div class="cake-preview-panel">
             <div class="preview-label"><span aria-hidden="true">♥</span> Náhľad vašej torty</div>
-            <div class="preview-cake" data-color="caramel" aria-hidden="true">
-              <span class="preview-decoration">✿</span>
+            <div class="preview-cake" data-color="caramel" data-size="M" data-decorations="flowers" aria-hidden="true">
+              <span class="preview-decoration preview-flower">✿</span>
+              <span class="preview-decoration preview-pearls"><span></span><span></span><span></span><span></span><span></span></span>
+              <span class="preview-decoration preview-bow"><span></span></span>
               <div class="preview-top"></div>
               <div class="preview-layer">
                 <span class="preview-inscription">BentoLab</span>
@@ -140,15 +142,15 @@
               </div>
               <div class="decoration-options">
                 <label class="decoration-option">
-                  <input class="config-choice" type="checkbox" name="decoration" value="Kvety" checked>
+                  <input class="config-choice" type="checkbox" name="decoration" value="Kvety" data-preview="flowers" checked>
                   <span>Kvety</span>
                 </label>
                 <label class="decoration-option">
-                  <input class="config-choice" type="checkbox" name="decoration" value="Perličky">
+                  <input class="config-choice" type="checkbox" name="decoration" value="Perličky" data-preview="pearls">
                   <span>Perličky</span>
                 </label>
                 <label class="decoration-option">
-                  <input class="config-choice" type="checkbox" name="decoration" value="Mašľa">
+                  <input class="config-choice" type="checkbox" name="decoration" value="Mašľa" data-preview="bow">
                   <span>Mašľa</span>
                 </label>
               </div>

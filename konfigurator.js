@@ -18,7 +18,8 @@ if (configurator) {
   const updateSummary = () => {
     const size = configurator.querySelector('input[name="size"]:checked');
     const color = configurator.querySelector('input[name="color"]:checked');
-    const decorations = Array.from(configurator.querySelectorAll('input[name="decoration"]:checked'))
+    const selectedDecorations = Array.from(configurator.querySelectorAll('input[name="decoration"]:checked'));
+    const decorations = selectedDecorations
       .map((option) => option.value);
     const details = [
       size?.value,
@@ -32,6 +33,10 @@ if (configurator) {
     summaryDetails.textContent = details.join(" · ");
     estimatedPrice.textContent = `${estimatedPrice.dataset.price} €`;
     previewCake.dataset.color = color?.dataset.color ?? "caramel";
+    previewCake.dataset.size = size?.value ?? "M";
+    previewCake.dataset.decorations = selectedDecorations
+      .map((option) => option.dataset.preview)
+      .join(" ");
     previewBase.textContent = flavorSelect.value;
     previewInscription.textContent = inscriptionInput.value.trim() || "BentoLab";
   };

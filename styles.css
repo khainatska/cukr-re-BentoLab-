@@ -967,9 +967,20 @@ input::placeholder {
 .preview-cake {
   --cake-icing: var(--accent);
   --cake-ink: var(--btn-text);
+  --cake-scale: 1;
   position: relative;
   width: min(440px, 88%);
   aspect-ratio: 1 / 0.72;
+  transform: scale(var(--cake-scale));
+  transform-origin: center;
+}
+
+.preview-cake[data-size="S"] {
+  --cake-scale: 0.78;
+}
+
+.preview-cake[data-size="L"] {
+  --cake-scale: 1.2;
 }
 
 .preview-cake[data-color="chocolate"] {
@@ -1006,13 +1017,72 @@ input::placeholder {
 }
 
 .preview-decoration {
+  display: none;
   position: absolute;
   z-index: 4;
-  top: 6%;
   left: 50%;
   color: var(--accent);
+}
+
+.preview-cake[data-decorations~="flowers"] .preview-flower {
+  top: 6%;
+  display: block;
   font-size: 20px;
   transform: translateX(-50%);
+}
+
+.preview-cake[data-decorations~="pearls"] .preview-pearls {
+  top: 30%;
+  width: 62%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateX(-50%);
+}
+
+.preview-pearls span {
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-circle);
+  background: var(--card);
+}
+
+.preview-cake[data-decorations~="bow"] .preview-bow {
+  top: 14%;
+  width: 42px;
+  height: 20px;
+  display: block;
+  transform: translateX(-50%);
+}
+
+.preview-bow::before,
+.preview-bow::after {
+  position: absolute;
+  top: 2px;
+  width: 16px;
+  height: 12px;
+  border: 2px solid var(--accent);
+  border-radius: 70% 30%;
+  content: "";
+}
+
+.preview-bow::before {
+  left: 1px;
+}
+
+.preview-bow::after {
+  right: 1px;
+  transform: scaleX(-1);
+}
+
+.preview-bow span {
+  position: absolute;
+  top: 6px;
+  left: 17px;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-circle);
+  background: var(--accent);
 }
 
 .preview-layer {
