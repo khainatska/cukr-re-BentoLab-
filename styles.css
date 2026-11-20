@@ -40,7 +40,6 @@ html {
 
 body {
   margin: 0;
-  min-width: 320px;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
@@ -112,6 +111,7 @@ input::placeholder {
   display: grid;
   grid-template-columns: 220px 1fr auto;
   align-items: center;
+  min-width: 0;
 }
 
 .brand {
@@ -119,10 +119,13 @@ input::placeholder {
   align-items: center;
   gap: 9px;
   width: fit-content;
+  min-width: 0;
+  max-width: 100%;
   color: var(--text);
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.3px;
+  white-space: nowrap;
 }
 
 .brand-name {
@@ -698,6 +701,13 @@ input::placeholder {
   gap: 14px;
 }
 
+.cake-card,
+.cake-card * {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 .cake-card {
   display: flex;
   flex-direction: column;
@@ -777,11 +787,11 @@ input::placeholder {
 }
 
 .cake-card-heading h2 {
-  min-width: 0;
   margin: 0;
   color: var(--text);
   font-size: 17px;
   line-height: 1.25;
+  overflow-wrap: anywhere;
 }
 
 .cake-rating {
@@ -798,6 +808,7 @@ input::placeholder {
   color: var(--text-secondary);
   font-size: 13px;
   line-height: 1.6;
+  overflow-wrap: anywhere;
 }
 
 .cake-card-footer {
@@ -832,6 +843,8 @@ input::placeholder {
   font-size: 12px;
   font-weight: 700;
   text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .cake-button:hover {
@@ -947,10 +960,21 @@ input::placeholder {
   .cake-menu,
   .flavor-inner {
     width: calc(100% - 32px);
+    max-width: 100%;
+    min-width: 0;
   }
 
   .header-inner {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .header-actions {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .icon-button {
+    flex: 0 0 auto;
   }
 
   .search-box {
@@ -1008,7 +1032,7 @@ input::placeholder {
 
 @media (max-width: 600px) {
   .cake-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 12px;
   }
 }
