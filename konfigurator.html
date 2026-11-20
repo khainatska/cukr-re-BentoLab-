@@ -67,22 +67,17 @@
 
       <div class="builder-layout">
         <figure class="cake-preview">
+          <h2 class="preview-heading">Náhľad tvojej torty</h2>
           <div class="cake-preview-panel">
-            <div class="preview-label"><span aria-hidden="true">♥</span> Náhľad vašej torty</div>
-            <div class="preview-cake" data-color="caramel" data-size="M" data-decorations="flowers" aria-hidden="true">
-              <span class="preview-decoration preview-flower">✿</span>
-              <span class="preview-decoration preview-pearls"><span></span><span></span><span></span><span></span><span></span></span>
-              <span class="preview-decoration preview-bow"><span></span></span>
-              <div class="preview-top"></div>
-              <div class="preview-layer">
-                <span class="preview-inscription">BentoLab</span>
-              </div>
-              <div class="preview-filling"></div>
-              <div class="preview-base">Čokoláda a maliny</div>
-              <div class="preview-shadow"></div>
-            </div>
+            <img class="preview-image" id="cake-preview-image" src="img/Ovocné.pokušenie.png" alt="Torta s príchuťou Čokoláda a maliny" loading="lazy">
+            <p class="preview-inscription" id="preview-inscription" aria-live="polite" hidden></p>
           </div>
-          <figcaption>Náhľad je ilustračný. Každý detail doladíme ručne.</figcaption>
+          <div class="preview-chips" aria-label="Aktuálny výber torty">
+            <span class="preview-chip" id="preview-size-chip">Veľkosť: M · 10–12 porcií</span>
+            <span class="preview-chip" id="preview-color-chip">Farba: Karamelová</span>
+            <span class="preview-chip" id="preview-decoration-chip">Dekorácie: Kvety</span>
+          </div>
+          <figcaption>Ukážka chuti. Finálny vzhľad doladíme spolu s tebou.</figcaption>
         </figure>
 
         <section class="config-card" aria-labelledby="config-title">
@@ -113,10 +108,10 @@
               </div>
               <label class="field-label" for="cake-flavor">Príchuť</label>
               <select class="config-select config-choice" id="cake-flavor" name="flavor">
-                <option selected>Čokoláda a maliny</option>
-                <option>Vanilkový obláčik</option>
-                <option>Pistáciový sen</option>
-                <option>Slaný karamel</option>
+                <option data-image="img/Ovocné.pokušenie.png" selected>Čokoláda a maliny</option>
+                <option data-image="img/Vanilkový.obláčik.png">Vanilkový obláčik</option>
+                <option data-image="img/pistaciovy-sen.png">Pistáciový sen</option>
+                <option data-image="img/Slaný_karamel.png">Slaný karamel</option>
               </select>
             </fieldset>
 
@@ -124,33 +119,33 @@
               <legend><span class="step-index">2</span> Farba a dekorácia</legend>
               <div class="color-options">
                 <label class="color-option">
-                  <input class="config-choice" type="radio" name="color" value="Karamelová" data-color="caramel" checked>
+                  <input class="config-choice" type="radio" name="color" value="Karamelová" checked>
                   <span class="color-option-content"><span class="color-swatch swatch-caramel"></span><span>Karamelová</span></span>
                 </label>
                 <label class="color-option">
-                  <input class="config-choice" type="radio" name="color" value="Čokoládová" data-color="chocolate">
+                  <input class="config-choice" type="radio" name="color" value="Čokoládová">
                   <span class="color-option-content"><span class="color-swatch swatch-chocolate"></span><span>Čokoládová</span></span>
                 </label>
                 <label class="color-option">
-                  <input class="config-choice" type="radio" name="color" value="Latte" data-color="latte">
+                  <input class="config-choice" type="radio" name="color" value="Latte">
                   <span class="color-option-content"><span class="color-swatch swatch-latte"></span><span>Latte</span></span>
                 </label>
                 <label class="color-option">
-                  <input class="config-choice" type="radio" name="color" value="Vanilková" data-color="vanilla">
+                  <input class="config-choice" type="radio" name="color" value="Vanilková">
                   <span class="color-option-content"><span class="color-swatch swatch-vanilla"></span><span>Vanilková</span></span>
                 </label>
               </div>
               <div class="decoration-options">
                 <label class="decoration-option">
-                  <input class="config-choice" type="checkbox" name="decoration" value="Kvety" data-preview="flowers" checked>
+                  <input class="config-choice" type="checkbox" name="decoration" value="Kvety" checked>
                   <span>Kvety</span>
                 </label>
                 <label class="decoration-option">
-                  <input class="config-choice" type="checkbox" name="decoration" value="Perličky" data-preview="pearls">
+                  <input class="config-choice" type="checkbox" name="decoration" value="Perličky">
                   <span>Perličky</span>
                 </label>
                 <label class="decoration-option">
-                  <input class="config-choice" type="checkbox" name="decoration" value="Mašľa" data-preview="bow">
+                  <input class="config-choice" type="checkbox" name="decoration" value="Mašľa">
                   <span>Mašľa</span>
                 </label>
               </div>

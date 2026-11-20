@@ -924,17 +924,24 @@ input::placeholder {
 }
 
 .cake-preview {
+  position: sticky;
+  top: 82px;
+  align-self: start;
   min-width: 0;
   max-width: 100%;
   margin: 0;
 }
 
+.preview-heading {
+  margin: 0 0 16px;
+  color: var(--text);
+  font-size: var(--font-size-h3);
+}
+
 .cake-preview-panel {
   position: relative;
   width: 100%;
-  aspect-ratio: 1.35 / 1;
-  display: grid;
-  place-items: center;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border: 1px solid var(--border-card);
   border-radius: var(--radius-card);
@@ -942,209 +949,68 @@ input::placeholder {
   box-shadow: var(--shadow-card);
 }
 
-.preview-label {
-  position: absolute;
-  top: 6%;
-  left: 50%;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 6px 12px;
-  border: 1px solid var(--border-card);
-  border-radius: var(--radius-pill);
-  background: var(--card);
-  color: var(--text-secondary);
-  font-size: 14px;
-  transform: translateX(-50%);
-  white-space: nowrap;
-}
-
-.preview-label span {
-  color: var(--accent);
-  font-size: 10px;
-}
-
-.preview-cake {
-  --cake-icing: var(--accent);
-  --cake-ink: var(--btn-text);
-  --cake-scale: 1;
-  position: relative;
-  width: min(440px, 88%);
-  aspect-ratio: 1 / 0.72;
-  transform: scale(var(--cake-scale));
-  transform-origin: center;
-}
-
-.preview-cake[data-size="S"] {
-  --cake-scale: 0.78;
-}
-
-.preview-cake[data-size="L"] {
-  --cake-scale: 1.2;
-}
-
-.preview-cake[data-color="chocolate"] {
-  --cake-icing: var(--btn-primary);
-}
-
-.preview-cake[data-color="latte"] {
-  --cake-icing: var(--placeholder);
-}
-
-.preview-cake[data-color="vanilla"] {
-  --cake-icing: var(--card);
-  --cake-ink: var(--text);
-}
-
-.preview-top,
-.preview-layer,
-.preview-filling,
-.preview-base {
-  position: absolute;
-  left: 50%;
-  width: 72%;
-  transform: translateX(-50%);
-}
-
-.preview-top {
-  z-index: 2;
-  top: 10%;
-  width: 54%;
-  height: 19%;
-  border: 1px solid var(--border-card);
-  border-radius: 30px 30px 10px 10px;
-  background: var(--card);
-}
-
-.preview-decoration {
-  display: none;
-  position: absolute;
-  z-index: 4;
-  left: 50%;
-  color: var(--accent);
-}
-
-.preview-cake[data-decorations~="flowers"] .preview-flower {
-  top: 6%;
+.preview-image {
   display: block;
-  font-size: 20px;
-  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: inherit;
+  transition: opacity 0.3s ease;
 }
 
-.preview-cake[data-decorations~="pearls"] .preview-pearls {
-  top: 30%;
-  width: 62%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateX(-50%);
-}
-
-.preview-pearls span {
-  width: 9px;
-  height: 9px;
-  border: 1px solid var(--accent);
-  border-radius: var(--radius-circle);
-  background: var(--card);
-}
-
-.preview-cake[data-decorations~="bow"] .preview-bow {
-  top: 14%;
-  width: 42px;
-  height: 20px;
-  display: block;
-  transform: translateX(-50%);
-}
-
-.preview-bow::before,
-.preview-bow::after {
-  position: absolute;
-  top: 2px;
-  width: 16px;
-  height: 12px;
-  border: 2px solid var(--accent);
-  border-radius: 70% 30%;
-  content: "";
-}
-
-.preview-bow::before {
-  left: 1px;
-}
-
-.preview-bow::after {
-  right: 1px;
-  transform: scaleX(-1);
-}
-
-.preview-bow span {
-  position: absolute;
-  top: 6px;
-  left: 17px;
-  width: 8px;
-  height: 8px;
-  border-radius: var(--radius-circle);
-  background: var(--accent);
-}
-
-.preview-layer {
-  z-index: 3;
-  top: 22%;
-  height: 35%;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--accent);
-  border-radius: 48% 48% 16% 16% / 38% 38% 18% 18%;
-  background: var(--cake-icing);
-  color: var(--cake-ink);
+.preview-image.is-changing {
+  opacity: 0;
 }
 
 .preview-inscription {
-  max-width: 90%;
-  overflow: hidden;
-  font-family: var(--font-heading);
-  font-size: clamp(11px, 2vw, 16px);
-  font-weight: 700;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.preview-filling {
-  z-index: 2;
-  top: 54%;
-  height: 9%;
-  border: 1px solid var(--border-card);
-  border-radius: 50%;
-  background: var(--card);
-}
-
-.preview-base {
-  z-index: 1;
-  top: 58%;
-  height: 33%;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--accent);
-  border-radius: 18% 18% 16% 16% / 24% 24% 16% 16%;
-  background: var(--cake-icing);
-  color: var(--cake-ink);
-  font-size: clamp(8px, 1.5vw, 12px);
-  text-align: center;
-}
-
-.preview-shadow {
   position: absolute;
-  right: 3%;
-  bottom: 1%;
-  left: 3%;
-  height: 7%;
-  border-radius: 50%;
-  background: rgba(74, 42, 27, 0.12);
-  filter: blur(4px);
+  bottom: 20px;
+  left: 50%;
+  max-width: calc(100% - 32px);
+  margin: 0;
+  padding: 8px 16px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-field);
+  background: var(--card);
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  overflow-wrap: anywhere;
+  transform: translateX(-50%);
+}
+
+.preview-inscription[hidden] {
+  display: none;
+}
+
+.preview-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.preview-chip {
+  max-width: 100%;
+  padding: 5px 12px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-pill);
+  background: var(--block);
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 
 .cake-preview figcaption {
-  margin-top: 12px;
+  margin-top: 14px;
   color: var(--text-secondary);
   font-size: 14px;
+  line-height: var(--line-height-body);
   text-align: center;
 }
 
@@ -1513,6 +1379,7 @@ input::placeholder {
   }
 
   .cake-preview {
+    position: static;
     width: min(100%, 560px);
     justify-self: center;
   }
@@ -1613,14 +1480,6 @@ input::placeholder {
     padding: 18px;
   }
 
-  .cake-preview-panel {
-    aspect-ratio: 1.15 / 1;
-  }
-
-  .preview-cake {
-    width: min(300px, 80%);
-  }
-
   .hero-actions {
     align-items: flex-start;
     flex-direction: column;
@@ -1632,6 +1491,15 @@ input::placeholder {
 }
 
 @media (max-width: 600px) {
+  .cake-preview-panel {
+    height: min(260px, calc(100vw - 32px));
+    aspect-ratio: auto;
+  }
+
+  .preview-image {
+    aspect-ratio: auto;
+  }
+
   .cake-grid {
     grid-template-columns: minmax(0, 1fr);
     gap: 12px;
