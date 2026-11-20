@@ -31,7 +31,7 @@ if (configurator) {
     ].filter(Boolean);
 
     summaryDetails.textContent = details.join(" · ");
-    estimatedPrice.textContent = `${estimatedPrice.dataset.price} €`;
+    estimatedPrice.textContent = `${size?.dataset.price ?? estimatedPrice.dataset.price} €`;
     previewCake.dataset.color = color?.dataset.color ?? "caramel";
     previewCake.dataset.size = size?.value ?? "M";
     previewCake.dataset.decorations = selectedDecorations
