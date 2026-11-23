@@ -27,13 +27,13 @@
           <span class="search-icon" aria-hidden="true"></span>
           <input type="search" placeholder="Hľadať..." autocomplete="off">
         </label>
-        <button class="icon-button cart-button" type="button" aria-label="Košík">
+        <button class="icon-button cart-button" type="button" aria-label="Košík" aria-expanded="false" aria-controls="cart-drawer">
           <svg class="cart-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3 4h2l2.5 11h11.2l2-7H6.1" />
             <circle cx="9.5" cy="19" r="1.25" />
             <circle cx="17.5" cy="19" r="1.25" />
           </svg>
-          <span class="cart-count">2</span>
+          <span class="cart-count" hidden></span>
         </button>
         <button class="icon-button account-button" type="button" aria-label="Účet">
           <svg class="account-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -253,6 +253,7 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="cart.js"></script>
   <script src="konfigurator.js"></script>
 </body>
 </html>

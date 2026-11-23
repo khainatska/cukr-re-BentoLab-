@@ -14,8 +14,6 @@ if (configurator) {
   const photoInput = document.querySelector("#cake-photo");
   const uploadStatus = document.querySelector("#upload-status");
   const addToCartButton = document.querySelector("#add-config-to-cart");
-  const cartCount = document.querySelector(".cart-count");
-  const cartButton = document.querySelector(".cart-button");
   let previewImageRequest = 0;
   let previewImageTransition;
 
@@ -117,15 +115,6 @@ if (configurator) {
   });
 
   addToCartButton.addEventListener("click", () => {
-    const currentCount = Number.parseInt(cartCount.textContent ?? "", 10);
-    if (Number.isFinite(currentCount)) {
-      const nextCount = currentCount + 1;
-      cartCount.textContent = String(nextCount);
-      cartButton.setAttribute("aria-label", `Košík, položiek: ${nextCount}`);
-    } else {
-      console.error("Počet položiek v košíku nie je platné číslo.");
-    }
-
     const size = configurator.querySelector('input[name="size"]:checked');
     const flavor = flavorSelect.value;
     const color = configurator.querySelector('input[name="color"]:checked');
@@ -134,16 +123,26 @@ if (configurator) {
     ).map((option) => option.value);
     const inscription = inscriptionInput.value.trim();
     const price = size?.dataset.price ?? estimatedPrice.dataset.price;
-
-    sessionStorage.setItem("bentolabCakeConfiguration", JSON.stringify({
+    const configuration = {
       size: size?.value ?? "",
       flavor,
       color: color?.value ?? "",
       decorations,
       inscription,
       price,
-    }));
+    };
 
+    try {
+      sessionStorage.setItem("bentolabCakeConfiguration", JSON.stringify(configuration));
+    } catch (error) {
+      console.error("Nepodarilo sa uložiť konfiguráciu torty.", error);
+    }
+
+    if (!window.BentoLabCart) {
+      console.error("Košík nie je načítaný.");
+      return;
+    }
+    window.BentoLabCart.addConfiguration(configuration, false);
     window.location.href = "kontakt.html#formular";
   });
 

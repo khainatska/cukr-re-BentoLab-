@@ -233,6 +233,10 @@ input::placeholder {
   cursor: default;
 }
 
+.cart-button {
+  cursor: pointer;
+}
+
 .menu-toggle {
   display: none;
   width: 44px;
@@ -295,6 +299,10 @@ input::placeholder {
   color: var(--btn-text);
   font-family: var(--font-body);
   font-size: 9px;
+}
+
+.cart-count[hidden] {
+  display: none;
 }
 
 .hero {
@@ -840,15 +848,215 @@ input::placeholder {
   border-radius: var(--radius-pill);
   background: var(--btn-primary);
   color: var(--btn-text);
+  border: 0;
+  padding: 8px 14px;
+  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 700;
   text-align: center;
   white-space: normal;
   overflow-wrap: anywhere;
+  cursor: pointer;
 }
 
 .cake-button:hover {
   background: var(--btn-primary-hover);
+}
+
+.cart-open {
+  overflow: hidden;
+}
+
+.cart-overlay {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+}
+
+.cart-overlay[hidden] {
+  display: none;
+}
+
+.cart-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: rgba(36, 22, 15, 0.45);
+  cursor: pointer;
+}
+
+.cart-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(440px, 100%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border-left: 1px solid var(--border-card);
+  background: var(--card);
+  color: var(--text);
+  box-shadow: -8px 0 24px rgba(74, 42, 27, 0.12);
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.cart-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border-card);
+}
+
+.cart-drawer-header h2 {
+  margin: 0;
+  font-size: var(--font-size-h2);
+}
+
+.cart-close {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-circle);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.cart-drawer-content {
+  min-height: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.cart-empty p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.cart-items {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 20px 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-card);
+}
+
+.cart-item-description {
+  min-width: 0;
+}
+
+.cart-item-description h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 18px;
+}
+
+.cart-item-description p {
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.cart-item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  grid-column: 1 / -1;
+}
+
+.cart-quantity {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  font-size: 16px;
+}
+
+.cart-quantity-button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-circle);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.cart-remove {
+  min-height: 34px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.cart-item-price {
+  align-self: start;
+  margin: 3px 0 0;
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.cart-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 0;
+  border-top: 1px solid var(--border-card);
+  color: var(--text);
+  font-size: 18px;
+}
+
+.cart-summary strong {
+  color: var(--accent);
+  font-size: 22px;
+}
+
+.cart-checkout {
+  width: 100%;
+  min-height: 48px;
+  text-align: center;
 }
 
 .custom-cake-cta {
