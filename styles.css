@@ -1782,6 +1782,11 @@ input::placeholder {
   box-shadow: var(--shadow-card);
 }
 
+.info-card {
+  display: flex;
+  flex-direction: column;
+}
+
 .contact-card-heading {
   min-width: 0;
   display: flex;
@@ -1951,40 +1956,39 @@ input::placeholder {
   color: var(--accent);
 }
 
-.map-placeholder {
-  min-height: 150px;
+.map-container {
+  min-width: 0;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px dashed var(--border-card);
-  border-radius: var(--radius-field);
-  background: var(--block);
-  color: var(--text-secondary);
-  text-align: center;
+  overflow: hidden;
 }
 
-.map-pin {
+.contact-map {
+  display: block;
+  width: 100%;
+  min-height: 260px;
+  flex: 1 1 auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-sizing: border-box;
+}
+
+.map-container small {
+  margin-top: 4px;
+  text-align: right;
+}
+
+.map-container small a,
+.map-link {
   color: var(--accent);
-  font-size: 22px;
-  line-height: 1;
-}
-
-.map-placeholder strong {
-  margin-top: 10px;
-  color: var(--accent);
-  font-family: var(--font-heading);
-  font-size: 14px;
-}
-
-.map-placeholder p {
-  margin: 2px 0 0;
   font-size: 12px;
-  margin-top: 16px;
-  padding: var(--button-padding);
-  border: 0;
-  font-size: var(--font-size-base);
-  cursor: pointer;
+}
+
+.map-link {
+  align-self: flex-start;
+  margin-top: 8px;
+  font-size: 14px;
 }
 
 @media (max-width: 980px) {
