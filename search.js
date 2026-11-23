@@ -87,6 +87,31 @@
     activeIndex = -1;
   };
 
+  const mobileSearch = window.matchMedia("(max-width: 600px)");
+  const searchButton = form.querySelector(".search-submit");
+  const closeMobileSearch = () => {
+    searchContainer.classList.remove("is-open");
+    searchButton?.setAttribute("aria-label", "Hľadať");
+    input.blur();
+    closeSuggestions();
+  };
+
+  searchButton?.addEventListener("click", (event) => {
+    if (!mobileSearch.matches) {
+      return;
+    }
+
+    event.preventDefault();
+    if (searchContainer.classList.contains("is-open")) {
+      closeMobileSearch();
+      return;
+    }
+
+    searchContainer.classList.add("is-open");
+    searchButton.setAttribute("aria-label", "Zavrieť vyhľadávanie");
+    input.focus();
+  });
+
   const updateActiveOption = () => {
     const options = listbox.querySelectorAll('[role="option"]');
     options.forEach((option, index) => {
@@ -188,6 +213,9 @@
   document.addEventListener("click", (event) => {
     if (event.target instanceof Element && !searchContainer.contains(event.target)) {
       closeSuggestions();
+      if (mobileSearch.matches) {
+        closeMobileSearch();
+      }
     }
   });
 })();
