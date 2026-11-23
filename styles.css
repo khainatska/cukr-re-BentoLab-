@@ -891,7 +891,8 @@ input::placeholder {
   position: absolute;
   top: 0;
   right: 0;
-  width: min(440px, 100%);
+  width: min(420px, 100%);
+  max-width: 420px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -902,6 +903,12 @@ input::placeholder {
   box-shadow: -8px 0 24px rgba(74, 42, 27, 0.12);
   box-sizing: border-box;
   overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.cart-drawer :focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .cart-drawer-header {
@@ -931,6 +938,8 @@ input::placeholder {
 }
 
 .cart-drawer-content {
+  min-width: 0;
+  max-width: 100%;
   min-height: 0;
   flex: 1;
   display: flex;
@@ -954,6 +963,8 @@ input::placeholder {
 }
 
 .cart-items {
+  min-width: 0;
+  max-width: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -967,6 +978,8 @@ input::placeholder {
 .cart-item {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
+  min-width: 0;
+  max-width: 100%;
   gap: 12px;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--border-card);
@@ -991,6 +1004,7 @@ input::placeholder {
 
 .cart-item-footer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
   gap: 10px;
@@ -2003,6 +2017,11 @@ input::placeholder {
 }
 
 @media (max-width: 600px) {
+  .cart-drawer {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .cake-preview-panel {
     height: min(260px, calc(100vw - 32px));
     aspect-ratio: auto;

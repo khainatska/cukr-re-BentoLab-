@@ -7,7 +7,6 @@
   }
 
   let items = [];
-  let previouslyFocusedElement = null;
   const addButtonLabels = new WeakMap();
   const addButtonTimers = new WeakMap();
 
@@ -188,7 +187,6 @@
   };
 
   const openCart = () => {
-    previouslyFocusedElement = document.activeElement;
     overlay.hidden = false;
     document.body.classList.add("cart-open");
     cartButton.setAttribute("aria-expanded", "true");
@@ -201,9 +199,7 @@
     overlay.hidden = true;
     document.body.classList.remove("cart-open");
     cartButton.setAttribute("aria-expanded", "false");
-    if (previouslyFocusedElement instanceof HTMLElement) {
-      previouslyFocusedElement.focus();
-    }
+    cartButton.focus();
   };
 
   cartButton.addEventListener("click", openCart);
