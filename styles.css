@@ -165,6 +165,14 @@ input::placeholder {
   padding: 23px 0 20px;
 }
 
+.main-nav a:visited {
+  color: var(--text-secondary);
+}
+
+.main-nav a.active:visited {
+  color: var(--accent);
+}
+
 .main-nav a.active {
   color: var(--accent);
   font-weight: 700;
@@ -2066,6 +2074,14 @@ input::placeholder {
   .mobile-nav a {
     padding: 14px;
     color: var(--text-secondary);
+  }
+
+  .mobile-nav a:visited {
+    color: var(--text-secondary);
+  }
+
+  .mobile-nav a.active:visited {
+    color: var(--accent);
   }
 
   .mobile-nav a.active {
