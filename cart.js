@@ -311,26 +311,32 @@
 
   window.BentoLabCart = {
     addConfiguration(configuration, shouldOpen = true) {
-      const item = {
-        id: `custom:${JSON.stringify(configuration)}`,
-        name: `Torta na mieru (${configuration.size})`,
-        price: Number(configuration.price),
-        details: [
-          configuration.flavor,
-          configuration.color,
-          configuration.decorations.length
-            ? configuration.decorations.join(", ")
-            : "bez dekorácie",
-          configuration.inscription
-            ? `Nápis: ${configuration.inscription}`
-            : "bez nápisu",
-        ].join(" · "),
-      };
-
-      if (!Number.isFinite(item.price) || item.price < 0) {
+      const price = Number(configuration.price);
+      if (!Number.isFinite(price) || price < 0) {
         console.error("Konfigurácia torty nemá platnú cenu.");
         return;
       }
+
+      const decorations = Array.isArray(configuration.decorations)
+        ? configuration.decorations.join(", ") || "bez dekorácie"
+        : "bez dekorácie";
+      const inscription = configuration.inscription || "bez nápisu";
+      const uniqueId = window.crypto?.randomUUID?.()
+        ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      const item = {
+        id: `custom:${uniqueId}`,
+        name: "Vlastná torta",
+        price,
+        details: [
+          `Veľkosť: ${configuration.size}`,
+          `Príchuť: ${configuration.flavor}`,
+          `Farba: ${configuration.color}`,
+          `Dekorácie: ${decorations}`,
+          `Nápis: ${inscription}`,
+          `Orientačná cena: ${formatPrice(price)}`,
+        ].join(" · "),
+      };
+
       addItem(item);
       if (shouldOpen) {
         openCart();
