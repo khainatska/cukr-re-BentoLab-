@@ -1072,15 +1072,36 @@ input::placeholder {
 }
 
 .cart-close {
-  width: 42px;
-  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   border: 1px solid var(--border-card);
-  border-radius: var(--radius-circle);
+  border-radius: 50%;
   background: var(--bg);
   color: var(--text);
-  font-size: 26px;
   line-height: 1;
   cursor: pointer;
+}
+
+.cart-close svg {
+  width: 18px;
+  height: 18px;
+}
+
+.cart-close:hover {
+  background: var(--block);
+}
+
+.cart-close:focus {
+  outline: none;
+}
+
+.cart-close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .cart-drawer-content {

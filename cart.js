@@ -18,7 +18,11 @@
     <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" tabindex="-1">
       <header class="cart-drawer-header">
         <h2 id="cart-title">Tvoj košík</h2>
-        <button class="cart-close" type="button" aria-label="Zavrieť košík">×</button>
+        <button class="cart-close" type="button" aria-label="Zavrieť košík">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18"/>
+          </svg>
+        </button>
       </header>
       <div class="cart-drawer-content"></div>
     </aside>
