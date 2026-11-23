@@ -141,7 +141,13 @@
       description.className = "cart-item-description";
       const name = document.createElement("h3");
       name.textContent = item.name;
-      description.append(name);
+      const price = document.createElement("p");
+      price.className = "cart-item-price";
+      price.textContent = formatPrice(lineTotal);
+      const heading = document.createElement("div");
+      heading.className = "cart-item-heading";
+      heading.append(name, price);
+      description.append(heading);
 
       if (item.details) {
         const details = document.createElement("p");
@@ -168,10 +174,7 @@
         createActionButton(`Odstrániť ${item.name}`, "remove", item.id, "cart-remove"),
       );
 
-      const price = document.createElement("p");
-      price.className = "cart-item-price";
-      price.textContent = formatPrice(lineTotal);
-      listItem.append(description, itemFooter, price);
+      listItem.append(description, itemFooter);
       list.append(listItem);
     });
 
