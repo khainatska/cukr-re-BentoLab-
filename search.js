@@ -1,9 +1,10 @@
 (() => {
   const searchContainer = document.querySelector(".search-container");
+  const form = searchContainer?.querySelector(".search-box");
   const input = searchContainer?.querySelector('input[type="search"]');
   const listbox = searchContainer?.querySelector('[role="listbox"]');
 
-  if (!searchContainer || !input || !listbox) {
+  if (!searchContainer || !form || !input || !listbox) {
     return;
   }
 
@@ -30,6 +31,54 @@
     .replace(/[\u0300-\u036f]/g, "")
     .toLocaleLowerCase("sk")
     .trim();
+
+  const cakeGrid = document.querySelector(".cake-grid");
+  const searchFeedback = document.querySelector("#cake-search-feedback");
+  if (cakeGrid && searchFeedback) {
+    const rawQuery = new URLSearchParams(window.location.search).get("q") ?? "";
+    const query = rawQuery.trim();
+
+    if (query) {
+      input.value = rawQuery;
+      const normalizedQuery = normalize(query);
+      const cards = Array.from(cakeGrid.querySelectorAll(".cake-card"));
+      const matchingCards = cards.filter((card) => {
+        const name = card.querySelector(".cake-card-heading h2")?.textContent ?? "";
+        return normalize(name).includes(normalizedQuery);
+      });
+
+      cards.forEach((card) => {
+        card.hidden = !matchingCards.includes(card);
+      });
+      cakeGrid.hidden = matchingCards.length === 0;
+      searchFeedback.hidden = false;
+      searchFeedback.replaceChildren();
+
+      const message = document.createElement("p");
+      if (matchingCards.length > 0) {
+        searchFeedback.className = "cake-search-feedback cake-search-feedback-row";
+        message.textContent = `Výsledky pre „${query}“`;
+
+        const clearButton = document.createElement("button");
+        clearButton.className = "cake-filter-clear";
+        clearButton.type = "button";
+        clearButton.textContent = "Zrušiť filter";
+        clearButton.addEventListener("click", () => {
+          window.location.href = "ponuka.html";
+        });
+        searchFeedback.append(message, clearButton);
+      } else {
+        searchFeedback.className = "cake-search-feedback cake-search-feedback-empty";
+        message.textContent = "Nič sme nenašli. Skús iné slovo alebo si vytvor vlastnú tortu.";
+
+        const createCakeLink = document.createElement("a");
+        createCakeLink.className = "button button-primary";
+        createCakeLink.href = "konfigurator.html";
+        createCakeLink.textContent = "Vytvoriť tortu →";
+        searchFeedback.append(message, createCakeLink);
+      }
+    }
+  }
 
   const closeSuggestions = () => {
     listbox.hidden = true;
@@ -100,6 +149,12 @@
   };
 
   input.addEventListener("input", renderSuggestions);
+  form.addEventListener("submit", (event) => {
+    if (!input.value.trim()) {
+      event.preventDefault();
+      closeSuggestions();
+    }
+  });
 
   input.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
@@ -123,9 +178,10 @@
       activeIndex = activeIndex <= 0 ? matches.length - 1 : activeIndex - 1;
       updateActiveOption();
     } else if (event.key === "Enter") {
-      event.preventDefault();
-      const selectedIndex = activeIndex < 0 ? 0 : activeIndex;
-      window.location.href = matches[selectedIndex].href;
+      if (activeIndex >= 0) {
+        event.preventDefault();
+        window.location.href = matches[activeIndex].href;
+      }
     }
   });
 

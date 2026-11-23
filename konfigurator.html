@@ -24,10 +24,12 @@
 
       <div class="header-actions">
         <div class="search-container">
-          <label class="search-box">
-            <span class="search-icon" aria-hidden="true"></span>
-            <input type="search" placeholder="Hľadať..." aria-label="Hľadať torty a stránky" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="search-results" autocomplete="off">
-          </label>
+          <form class="search-box" action="ponuka.html" method="get">
+            <button class="search-submit" type="submit" aria-label="Hľadať">
+              <span class="search-icon" aria-hidden="true"></span>
+            </button>
+            <input type="search" name="q" placeholder="Hľadať..." aria-label="Hľadať torty a stránky" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="search-results" autocomplete="off">
+          </form>
           <div class="search-results" id="search-results" role="listbox" hidden></div>
         </div>
         <button class="icon-button cart-button" type="button" aria-label="Košík" aria-expanded="false" aria-controls="cart-drawer">

@@ -210,6 +210,16 @@ input::placeholder {
   font-size: 12px;
 }
 
+.search-submit {
+  display: grid;
+  flex: 0 0 12px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
 .search-container {
   position: relative;
   flex: 0 0 150px;
@@ -789,6 +799,57 @@ input::placeholder {
   gap: 14px;
 }
 
+.cake-grid[hidden] {
+  display: none;
+}
+
+.cake-search-feedback-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.cake-search-feedback-row p {
+  margin: 0;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.cake-filter-clear {
+  min-height: 40px;
+  padding: 8px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.cake-filter-clear:hover {
+  background: var(--block);
+}
+
+.cake-search-feedback-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 28px 20px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  background: var(--card);
+  text-align: center;
+}
+
+.cake-search-feedback-empty p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
 .cake-card,
 .cake-card * {
   min-width: 0;
@@ -804,6 +865,10 @@ input::placeholder {
   border-radius: var(--radius-card);
   background: var(--card);
   box-shadow: var(--shadow-card);
+}
+
+.cake-card[hidden] {
+  display: none;
 }
 
 .cake-image {
