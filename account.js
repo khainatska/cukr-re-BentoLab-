@@ -5,6 +5,23 @@
   }
 
   const storageKey = "bentolabAccount";
+  const sessionKey = "bentolabAccountSession";
+  const accountMenu = document.createElement("div");
+  accountMenu.className = "account-menu";
+  accountMenu.id = "account-menu";
+  accountMenu.setAttribute("role", "menu");
+  accountMenu.setAttribute("aria-label", "Menu účtu");
+  accountMenu.hidden = true;
+  accountMenu.innerHTML = `
+    <div class="account-menu-summary" role="group" aria-label="Prihlásený účet">
+      <p class="account-menu-greeting"></p>
+      <p class="account-menu-email"></p>
+      <p class="account-menu-feedback" role="status" aria-live="polite" hidden></p>
+    </div>
+    <button class="account-logout" type="button" role="menuitem">Odhlásiť sa</button>
+  `;
+  accountButton.insertAdjacentElement("afterend", accountMenu);
+
   const dialog = document.createElement("dialog");
   dialog.className = "account-dialog";
   dialog.id = "account-dialog";
@@ -67,6 +84,76 @@
   const tabButtons = Array.from(dialog.querySelectorAll('[role="tab"]'));
   const panels = Array.from(dialog.querySelectorAll('[role="tabpanel"]'));
   const closeButton = dialog.querySelector(".account-close");
+  const loginForm = dialog.querySelector('[data-account-form="login"]');
+  const greeting = accountMenu.querySelector(".account-menu-greeting");
+  const accountEmail = accountMenu.querySelector(".account-menu-email");
+  const menuFeedback = accountMenu.querySelector(".account-menu-feedback");
+  const logoutButton = accountMenu.querySelector(".account-logout");
+  let signedInAccount = null;
+  let restoreError = false;
+
+  const setSignedInAccount = (account) => {
+    signedInAccount = account;
+    accountMenu.hidden = true;
+    menuFeedback.hidden = true;
+    accountButton.setAttribute("aria-expanded", "false");
+
+    if (!account) {
+      accountButton.classList.remove("is-signed-in");
+      accountButton.querySelector(".account-initial")?.remove();
+      accountButton.setAttribute("aria-label", "Účet");
+      accountButton.setAttribute("aria-haspopup", "dialog");
+      accountButton.setAttribute("aria-controls", dialog.id);
+      return;
+    }
+
+    let initial = accountButton.querySelector(".account-initial");
+    if (!initial) {
+      initial = document.createElement("span");
+      initial.className = "account-initial";
+      initial.setAttribute("aria-hidden", "true");
+      accountButton.append(initial);
+    }
+    initial.textContent = Array.from(account.name.trim())[0]?.toLocaleUpperCase("sk") ?? "?";
+    accountButton.classList.add("is-signed-in");
+    accountButton.setAttribute("aria-label", `Účet: ${account.name}`);
+    accountButton.setAttribute("aria-haspopup", "menu");
+    accountButton.setAttribute("aria-controls", accountMenu.id);
+    greeting.textContent = `Ahoj, ${account.name}`;
+    accountEmail.textContent = account.email;
+
+    const nameInput = document.querySelector("#meno-priezvisko");
+    const emailInput = document.querySelector("#email");
+    if (nameInput && !nameInput.value.trim()) {
+      nameInput.value = account.name;
+    }
+    if (emailInput && !emailInput.value.trim()) {
+      emailInput.value = account.email;
+    }
+  };
+
+  const readStoredAccount = () => {
+    const savedAccount = localStorage.getItem(storageKey);
+    if (!savedAccount) {
+      return null;
+    }
+
+    const account = JSON.parse(savedAccount);
+    if (
+      !account
+      || typeof account.name !== "string"
+      || !account.name.trim()
+      || typeof account.email !== "string"
+      || !account.email.trim()
+    ) {
+      throw new Error("Uložené údaje ukážkového účtu nemajú správny formát.");
+    }
+
+    return {
+      name: account.name.trim(),
+      email: account.email.trim(),
+    };
+  };
 
   const setActiveTab = (tab) => {
     tabButtons.forEach((button) => {
@@ -168,19 +255,10 @@
       }
 
       try {
-        const savedAccount = localStorage.getItem(storageKey);
-        if (!savedAccount) {
+        const account = readStoredAccount();
+        if (!account) {
           setFeedback(form, "Ukážkový účet s týmto e-mailom sa nenašiel. Najprv sa zaregistruj.", true);
           return;
-        }
-
-        const account = JSON.parse(savedAccount);
-        if (
-          !account
-          || typeof account.name !== "string"
-          || typeof account.email !== "string"
-        ) {
-          throw new Error("Uložené údaje ukážkového účtu nemajú správny formát.");
         }
 
         if (account.email.toLocaleLowerCase("sk") !== email) {
@@ -188,6 +266,8 @@
           return;
         }
 
+        sessionStorage.setItem(sessionKey, "signed-in");
+        setSignedInAccount(account);
         form.reset();
         fields.forEach((field) => {
           delete field.dataset.validated;
@@ -197,7 +277,7 @@
         });
         setFeedback(form, `Ahoj, ${account.name}! Toto bolo len ukážkové prihlásenie.`);
       } catch (error) {
-        console.error("Nepodarilo sa načítať ukážkový účet.", error);
+        console.error("Nepodarilo sa načítať alebo prihlásiť ukážkový účet.", error);
         setFeedback(form, "Údaje účtu sa nepodarilo načítať. Skús to znova.", true);
       }
     });
@@ -231,9 +311,41 @@
     }
   };
 
-  accountButton.setAttribute("aria-controls", dialog.id);
-  accountButton.setAttribute("aria-expanded", "false");
+  const restoreSignedInAccount = () => {
+    try {
+      if (sessionStorage.getItem(sessionKey) !== "signed-in") {
+        return;
+      }
+
+      const account = readStoredAccount();
+      if (!account) {
+        sessionStorage.removeItem(sessionKey);
+        return;
+      }
+
+      setSignedInAccount(account);
+    } catch (error) {
+      restoreError = true;
+      console.error("Nepodarilo sa obnoviť prihlásenie ukážkového účtu.", error);
+    }
+  };
+
+  setSignedInAccount(null);
   accountButton.addEventListener("click", () => {
+    if (signedInAccount) {
+      const isOpening = accountMenu.hidden;
+      accountMenu.hidden = !isOpening;
+      accountButton.setAttribute("aria-expanded", String(isOpening));
+      if (isOpening) {
+        menuFeedback.hidden = true;
+        logoutButton.focus();
+      }
+      return;
+    }
+
+    if (restoreError) {
+      setFeedback(loginForm, "Prihlásenie sa nepodarilo obnoviť. Skús sa prihlásiť znova.", true);
+    }
     if (dialog.open) {
       closeDialog();
       return;
@@ -244,6 +356,25 @@
     dialog.querySelector('[role="tabpanel"]:not([hidden]) input').focus();
   });
   closeButton.addEventListener("click", closeDialog);
+  logoutButton.addEventListener("click", () => {
+    menuFeedback.hidden = true;
+    try {
+      localStorage.removeItem(storageKey);
+    } catch (error) {
+      console.error("Nepodarilo sa odstrániť údaje ukážkového účtu.", error);
+      menuFeedback.textContent = "Odhlásenie sa nepodarilo. Skús to znova.";
+      menuFeedback.hidden = false;
+      return;
+    }
+
+    try {
+      sessionStorage.removeItem(sessionKey);
+    } catch (error) {
+      console.error("Nepodarilo sa ukončiť reláciu ukážkového účtu.", error);
+    }
+    setSignedInAccount(null);
+    accountButton.focus();
+  });
   dialog.addEventListener("click", (event) => {
     if (event.target !== dialog) {
       return;
@@ -292,4 +423,26 @@
       first.focus();
     }
   });
+  document.addEventListener("click", (event) => {
+    if (
+      accountMenu.hidden
+      || !(event.target instanceof Element)
+      || accountMenu.contains(event.target)
+      || accountButton.contains(event.target)
+    ) {
+      return;
+    }
+
+    accountMenu.hidden = true;
+    accountButton.setAttribute("aria-expanded", "false");
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !accountMenu.hidden) {
+      event.preventDefault();
+      accountMenu.hidden = true;
+      accountButton.setAttribute("aria-expanded", "false");
+      accountButton.focus();
+    }
+  });
+  restoreSignedInAccount();
 })();

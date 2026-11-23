@@ -107,6 +107,7 @@ input::placeholder {
 }
 
 .header-inner {
+  position: relative;
   height: 100%;
   display: grid;
   grid-template-columns: 220px 1fr auto;
@@ -2357,6 +2358,92 @@ input::placeholder {
   cursor: pointer;
 }
 
+.account-button.is-signed-in {
+  display: grid;
+  place-items: center;
+}
+
+.account-button.is-signed-in .account-icon {
+  display: none;
+}
+
+.account-initial {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: var(--radius-circle);
+  background: var(--btn-primary);
+  color: var(--btn-text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.account-menu {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 8px);
+  right: 0;
+  width: min(280px, calc(100vw - 32px));
+  padding: 16px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  background: var(--card);
+  color: var(--text);
+  box-shadow: var(--shadow-card);
+}
+
+.account-menu[hidden] {
+  display: none;
+}
+
+.account-menu-summary {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-card);
+}
+
+.account-menu-greeting,
+.account-menu-email {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.account-menu-greeting {
+  font-weight: 700;
+}
+
+.account-menu-email {
+  margin-top: 3px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.account-menu-feedback {
+  margin: 10px 0 0;
+  color: #8B3A32;
+  font-size: 12px;
+}
+
+.account-menu-feedback[hidden] {
+  display: none;
+}
+
+.account-logout {
+  width: 100%;
+  margin-top: 12px;
+  padding: 9px 10px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-small);
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.account-logout:hover {
+  background: var(--block);
+}
+
 .account-dialog::backdrop {
   background: rgba(30, 15, 8, 0.48);
 }
@@ -2481,6 +2568,10 @@ input::placeholder {
 }
 
 @media (max-width: 420px) {
+  .account-menu {
+    width: min(280px, calc(100vw - 24px));
+  }
+
   .account-dialog {
     width: calc(100vw - 24px);
     max-height: calc(100vh - 24px);
