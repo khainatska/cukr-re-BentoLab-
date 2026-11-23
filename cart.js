@@ -8,6 +8,8 @@
 
   let items = [];
   let previouslyFocusedElement = null;
+  const addButtonLabels = new WeakMap();
+  const addButtonTimers = new WeakMap();
 
   const overlay = document.createElement("div");
   overlay.className = "cart-overlay";
@@ -289,6 +291,14 @@
     }
 
     addItem({ id: `cake:${name}`, name, price });
+    const originalLabel = addButtonLabels.get(addButton) ?? addButton.textContent.trim();
+    addButtonLabels.set(addButton, originalLabel);
+    window.clearTimeout(addButtonTimers.get(addButton));
+    addButton.textContent = "Pridané ✓";
+    addButtonTimers.set(addButton, window.setTimeout(() => {
+      addButton.textContent = originalLabel;
+      addButtonTimers.delete(addButton);
+    }, 1600));
     openCart();
   });
 
