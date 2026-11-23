@@ -118,14 +118,33 @@ if (configurator) {
 
   addToCartButton.addEventListener("click", () => {
     const currentCount = Number.parseInt(cartCount.textContent ?? "", 10);
-    if (!Number.isFinite(currentCount)) {
+    if (Number.isFinite(currentCount)) {
+      const nextCount = currentCount + 1;
+      cartCount.textContent = String(nextCount);
+      cartButton.setAttribute("aria-label", `Košík, položiek: ${nextCount}`);
+    } else {
       console.error("Počet položiek v košíku nie je platné číslo.");
-      return;
     }
 
-    const nextCount = currentCount + 1;
-    cartCount.textContent = String(nextCount);
-    cartButton.setAttribute("aria-label", `Košík, položiek: ${nextCount}`);
+    const size = configurator.querySelector('input[name="size"]:checked');
+    const flavor = flavorSelect.value;
+    const color = configurator.querySelector('input[name="color"]:checked');
+    const decorations = Array.from(
+      configurator.querySelectorAll('input[name="decoration"]:checked'),
+    ).map((option) => option.value);
+    const inscription = inscriptionInput.value.trim();
+    const price = size?.dataset.price ?? estimatedPrice.dataset.price;
+
+    sessionStorage.setItem("bentolabCakeConfiguration", JSON.stringify({
+      size: size?.value ?? "",
+      flavor,
+      color: color?.value ?? "",
+      decorations,
+      inscription,
+      price,
+    }));
+
+    window.location.href = "kontakt.html#formular";
   });
 
   characterCount.textContent = String(inscriptionInput.value.length);
