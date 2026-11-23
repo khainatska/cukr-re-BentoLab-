@@ -2338,3 +2338,161 @@ input::placeholder {
     width: 100%;
   }
 }
+
+.account-dialog {
+  width: min(440px, calc(100vw - 32px));
+  max-width: 100%;
+  max-height: calc(100vh - 32px);
+  margin: auto;
+  padding: 24px;
+  overflow: auto;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  background: var(--card);
+  color: var(--text);
+  box-shadow: var(--shadow-card);
+}
+
+.account-button {
+  cursor: pointer;
+}
+
+.account-dialog::backdrop {
+  background: rgba(30, 15, 8, 0.48);
+}
+
+.account-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.account-dialog-header h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 26px;
+}
+
+.account-close {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  place-items: center;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-circle);
+  background: transparent;
+  color: var(--text);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.account-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-bottom: 18px;
+  padding: 4px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-pill);
+  background: var(--bg);
+}
+
+.account-tab {
+  min-width: 0;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.account-tab[aria-selected="true"] {
+  background: var(--btn-primary);
+  color: var(--btn-text);
+}
+
+.account-note {
+  margin: 0 0 12px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.account-demo-note {
+  margin-top: -6px;
+}
+
+.account-field {
+  margin-top: 12px;
+}
+
+.account-field label {
+  font-size: 13px;
+}
+
+.account-field input {
+  height: 44px;
+  font-size: 16px;
+}
+
+.account-field input.has-error {
+  border: 2px solid #8B3A32;
+  background: #FFF9F7;
+}
+
+.account-field-error {
+  min-height: 0;
+  margin: 4px 0 0;
+}
+
+.account-field-error[hidden],
+.account-feedback[hidden] {
+  display: none;
+}
+
+.account-feedback {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-small);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.account-feedback.is-error {
+  border-color: #8B3A32;
+  color: #8B3A32;
+}
+
+.account-submit {
+  width: 100%;
+  margin-top: 16px;
+  cursor: pointer;
+}
+
+@media (max-width: 420px) {
+  .account-dialog {
+    width: calc(100vw - 24px);
+    max-height: calc(100vh - 24px);
+    padding: 18px;
+  }
+
+  .account-tabs {
+    gap: 3px;
+  }
+
+  .account-tab {
+    padding-inline: 8px;
+    font-size: 14px;
+  }
+}
