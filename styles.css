@@ -1918,9 +1918,9 @@ input::placeholder {
 }
 
 .contact-detail {
-  display: grid;
-  grid-template-columns: 22px minmax(0, 1fr);
-  gap: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
   color: var(--text-secondary);
   font-size: 14px;
 }
@@ -1936,23 +1936,18 @@ input::placeholder {
 }
 
 .contact-icon {
+  display: block;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border-radius: var(--radius-circle);
+  box-sizing: border-box;
+  background: var(--block);
   color: var(--accent);
-  line-height: 1.5;
 }
 
-.contact-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 22px;
-  margin: 18px 0;
-  color: var(--text-secondary);
-  font-size: 14px;
-}
-
-.contact-links a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.contact-detail-link {
   color: var(--accent);
 }
 
