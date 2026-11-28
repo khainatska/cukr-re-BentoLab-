@@ -519,8 +519,37 @@ input::placeholder {
 }
 
 .button-primary {
+  display: inline-flex;
+  gap: 10px;
+  border: 0;
+  padding: 14px 28px;
   background: var(--btn-primary);
   color: var(--btn-text);
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(74, 42, 27, 0.16);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.button-primary svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  transition: transform 0.2s ease;
+}
+
+.button-primary span[aria-hidden="true"] {
+  transition: transform 0.2s ease;
+}
+
+.button-primary:focus:not(:focus-visible),
+.cake-button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.button-primary:focus-visible,
+.cake-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .hero .button-secondary {
@@ -530,8 +559,19 @@ input::placeholder {
 }
 
 .button-primary:hover,
+.cake-button:hover,
 .newsletter button:hover {
   background: var(--btn-primary-hover);
+}
+
+.button-primary:hover svg,
+.button-primary:hover span[aria-hidden="true"] {
+  transform: translateX(3px);
+}
+
+.button-primary:active,
+.cake-button:active {
+  transform: scale(0.98);
 }
 
 .hero .button-secondary:hover {
@@ -986,27 +1026,25 @@ input::placeholder {
 }
 
 .cake-button {
-  display: flex;
-  min-height: 42px;
+  display: inline-flex;
+  min-height: 50px;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 10px;
+  border: 0;
   border-radius: var(--radius-pill);
   background: var(--btn-primary);
   color: var(--btn-text);
-  border: 0;
-  padding: 8px 14px;
+  padding: 14px 28px;
   font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 700;
+  font-size: var(--font-size-base);
+  font-weight: 600;
   text-align: center;
   white-space: normal;
   overflow-wrap: anywhere;
   cursor: pointer;
-}
-
-.cake-button:hover {
-  background: var(--btn-primary-hover);
+  box-shadow: 0 4px 12px rgba(74, 42, 27, 0.16);
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .cart-open {
@@ -1244,7 +1282,7 @@ input::placeholder {
 
 .cart-checkout {
   width: 100%;
-  min-height: 48px;
+  min-height: 50px;
   text-align: center;
 }
 
@@ -1750,7 +1788,6 @@ input::placeholder {
 .order-button {
   width: 100%;
   min-height: 50px;
-  gap: 6px;
 }
 
 .contact-page {
@@ -1927,9 +1964,6 @@ input::placeholder {
 
 .form-submit-row .button {
   flex: none;
-  min-height: 44px;
-  padding: 10px 20px;
-  font-size: 14px;
 }
 
 .form-success {
