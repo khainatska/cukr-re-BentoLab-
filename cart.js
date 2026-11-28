@@ -75,6 +75,9 @@
   };
 
   const formatPrice = (price) => `${price.toLocaleString("sk-SK")} €`;
+  const truncateText = (text, maxLength = 80) => (
+    text.length > maxLength ? `${text.slice(0, maxLength).trimEnd()}…` : text
+  );
 
   const updateBadge = () => {
     const quantity = items.reduce((total, item) => total + item.quantity, 0);
@@ -324,12 +327,16 @@
         ? configuration.decorations.join(", ") || "bez dekorácie"
         : "bez dekorácie";
       const inscription = configuration.inscription || "bez nápisu";
+      const wishes = typeof configuration.wishes === "string"
+        ? configuration.wishes.trim()
+        : "";
       const uniqueId = window.crypto?.randomUUID?.()
         ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
       const item = {
         id: `custom:${uniqueId}`,
         name: "Vlastná torta",
         price,
+        wishes,
         details: [
           `Veľkosť: ${configuration.size}`,
           `Príchuť: ${configuration.flavor}`,
@@ -339,6 +346,9 @@
           `Orientačná cena: ${formatPrice(price)}`,
         ].join(" · "),
       };
+      if (wishes) {
+        item.details += `\nŽelania: ${truncateText(wishes)}`;
+      }
 
       addItem(item);
       if (shouldOpen) {

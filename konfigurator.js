@@ -5,6 +5,8 @@ if (configurator) {
   const estimatedPrice = document.querySelector("#estimated-price");
   const characterCount = document.querySelector("#characters-written");
   const inscriptionInput = document.querySelector("#cake-inscription");
+  const wishesInput = document.querySelector("#cake-wishes");
+  const wishesCount = document.querySelector("#wishes-count");
   const flavorSelect = document.querySelector("#cake-flavor");
   const previewImage = document.querySelector("#cake-preview-image");
   const previewInscription = document.querySelector("#preview-inscription");
@@ -60,12 +62,17 @@ if (configurator) {
     imageToLoad.src = imagePath;
   };
 
+  const truncateText = (text, maxLength = 80) => (
+    text.length > maxLength ? `${text.slice(0, maxLength).trimEnd()}…` : text
+  );
+
   const updateSummary = () => {
     const size = configurator.querySelector('input[name="size"]:checked');
     const color = configurator.querySelector('input[name="color"]:checked');
     const selectedDecorations = Array.from(configurator.querySelectorAll('input[name="decoration"]:checked'));
     const decorations = selectedDecorations
       .map((option) => option.value);
+    const wishes = wishesInput.value.trim();
     const details = [
       size?.value,
       flavorSelect.value,
@@ -75,7 +82,10 @@ if (configurator) {
       photoInput.files?.[0] ? "Fotografia nahratá" : "",
     ].filter(Boolean);
 
-    summaryDetails.textContent = details.join(" · ");
+    const summaryText = details.join(" · ");
+    summaryDetails.textContent = wishes
+      ? `${summaryText}\nŽelania: ${truncateText(wishes)}`
+      : summaryText;
     estimatedPrice.textContent = `${size?.dataset.price ?? estimatedPrice.dataset.price} €`;
     previewSizeChip.textContent = `Veľkosť: ${size?.value ?? "M"} · ${size?.dataset.portions ?? "10–12 porcií"}`;
     previewColorChip.textContent = `Farba: ${color?.value ?? "Karamelová"}`;
@@ -91,6 +101,11 @@ if (configurator) {
 
   inscriptionInput.addEventListener("input", () => {
     characterCount.textContent = String(inscriptionInput.value.length);
+    updateSummary();
+  });
+
+  wishesInput.addEventListener("input", () => {
+    wishesCount.textContent = String(wishesInput.value.length);
     updateSummary();
   });
 
@@ -122,6 +137,7 @@ if (configurator) {
       configurator.querySelectorAll('input[name="decoration"]:checked'),
     ).map((option) => option.value);
     const inscription = inscriptionInput.value.trim();
+    const wishes = wishesInput.value.trim();
     const price = size?.dataset.price ?? estimatedPrice.dataset.price;
     const configuration = {
       size: size?.value ?? "",
@@ -129,6 +145,7 @@ if (configurator) {
       color: color?.value ?? "",
       decorations,
       inscription,
+      wishes,
       price,
     };
 
@@ -147,5 +164,6 @@ if (configurator) {
   });
 
   characterCount.textContent = String(inscriptionInput.value.length);
+  wishesCount.textContent = String(wishesInput.value.length);
   updateSummary();
 }

@@ -1220,6 +1220,7 @@ input::placeholder {
   color: var(--text-secondary);
   font-size: 14px;
   overflow-wrap: anywhere;
+  white-space: pre-line;
 }
 
 .cart-item-footer {
@@ -1710,6 +1711,13 @@ input::placeholder {
   color: var(--placeholder);
 }
 
+.wishes-input {
+  min-height: 96px;
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
 .character-count {
   margin: 6px 0 0;
   color: var(--text-secondary);
@@ -1796,6 +1804,10 @@ input::placeholder {
   font-size: 14px;
   line-height: var(--line-height-body);
   overflow-wrap: anywhere;
+}
+
+.summary-details {
+  white-space: pre-line;
 }
 
 .order-button {

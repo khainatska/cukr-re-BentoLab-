@@ -32,6 +32,9 @@ if (orderForm) {
       const inscription = configuration.inscription
         ? configuration.inscription
         : "bez nápisu";
+      const wishes = typeof configuration.wishes === "string"
+        ? configuration.wishes.trim()
+        : "";
 
       noteInput.value = [
         `Veľkosť: ${configuration.size}`,
@@ -41,6 +44,9 @@ if (orderForm) {
         `nápis: ${inscription}`,
         `orientačná cena: ${configuration.price} €`,
       ].join(", ");
+      if (wishes) {
+        noteInput.value += `\nŽelania: ${wishes}`;
+      }
     }
   } catch (error) {
     console.error("Nepodarilo sa načítať konfiguráciu torty.", error);

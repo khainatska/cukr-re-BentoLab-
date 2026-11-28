@@ -91,7 +91,7 @@
               <p class="eyebrow">KONFIGURÁTOR</p>
               <h2 id="config-title">Tvoj návrh</h2>
             </div>
-            <span class="step-count">4 kroky</span>
+            <span class="step-count">5 krokov</span>
           </div>
 
           <form id="cake-configurator">
@@ -172,6 +172,13 @@
               </label>
               <input class="sr-only" id="cake-photo" name="photo" type="file" accept="image/jpeg,image/png">
               <p class="upload-status" id="upload-status" aria-live="polite"></p>
+            </fieldset>
+
+            <fieldset class="config-step">
+              <legend><span class="step-index">5</span> Ďalšie želania (nepovinné)</legend>
+              <label class="field-label" for="cake-wishes">Tvoje želania</label>
+              <textarea class="config-input wishes-input" id="cake-wishes" name="wishes" rows="3" maxlength="300" placeholder="Napr. alergie, bez lepku, téma oslavy, farby výzdoby, vek oslávenca…" aria-describedby="wishes-counter"></textarea>
+              <p class="character-count" id="wishes-counter"><span id="wishes-count">0</span> / 300 znakov</p>
             </fieldset>
 
             <div class="order-summary" aria-live="polite">
