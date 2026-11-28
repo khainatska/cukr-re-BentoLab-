@@ -8,7 +8,8 @@ if (configurator) {
   const wishesInput = document.querySelector("#cake-wishes");
   const wishesCount = document.querySelector("#wishes-count");
   const flavorSelect = document.querySelector("#cake-flavor");
-  const previewImage = document.querySelector("#cake-preview-image");
+  const cakeIllustration = document.querySelector("#cake-illustration");
+  const cakeArt = cakeIllustration.querySelector(".cake-art");
   const previewInscription = document.querySelector("#preview-inscription");
   const previewSizeChip = document.querySelector("#preview-size-chip");
   const previewColorChip = document.querySelector("#preview-color-chip");
@@ -23,53 +24,8 @@ if (configurator) {
   const changePhotoButton = document.querySelector("#change-photo");
   const removePhotoButton = document.querySelector("#remove-photo");
   const addToCartButton = document.querySelector("#add-config-to-cart");
-  let previewImageRequest = 0;
-  let previewImageTransition;
   let selectedPhoto = null;
   let photoPreviewUrl = "";
-
-  const updatePreviewImage = () => {
-    const selectedFlavor = flavorSelect.selectedOptions[0];
-    const imagePath = selectedFlavor.dataset.image;
-    const imageAlt = `Torta s príchuťou ${selectedFlavor.textContent.trim()}`;
-    const request = ++previewImageRequest;
-
-    window.clearTimeout(previewImageTransition);
-
-    if (previewImage.getAttribute("src") === imagePath) {
-      previewImage.alt = imageAlt;
-      previewImage.classList.remove("is-changing");
-      return;
-    }
-
-    const imageToLoad = new Image();
-    imageToLoad.onload = () => {
-      if (request !== previewImageRequest) {
-        return;
-      }
-
-      previewImage.classList.add("is-changing");
-      previewImageTransition = window.setTimeout(() => {
-        if (request !== previewImageRequest) {
-          return;
-        }
-
-        previewImage.src = imagePath;
-        previewImage.alt = imageAlt;
-        window.requestAnimationFrame(() => {
-          if (request === previewImageRequest) {
-            previewImage.classList.remove("is-changing");
-          }
-        });
-      }, 300);
-    };
-    imageToLoad.onerror = () => {
-      if (request === previewImageRequest) {
-        console.error(`Nepodarilo sa načítať fotografiu náhľadu: ${imagePath}`);
-      }
-    };
-    imageToLoad.src = imagePath;
-  };
 
   const truncateText = (text, maxLength = 80) => (
     text.length > maxLength ? `${text.slice(0, maxLength).trimEnd()}…` : text
@@ -87,6 +43,8 @@ if (configurator) {
     const selectedDecorations = Array.from(configurator.querySelectorAll('input[name="decoration"]:checked'));
     const decorations = selectedDecorations
       .map((option) => option.value);
+    const flavor = flavorSelect.value;
+    const cream = color?.value ?? "Karamelová";
     const wishes = wishesInput.value.trim();
     const details = [
       size?.value,
@@ -104,11 +62,18 @@ if (configurator) {
     ].filter(Boolean).join("\n");
     estimatedPrice.textContent = `${size?.dataset.price ?? estimatedPrice.dataset.price} €`;
     previewSizeChip.textContent = `Veľkosť: ${size?.value ?? "M"} · ${size?.dataset.portions ?? "10–12 porcií"}`;
-    previewColorChip.textContent = `Farba: ${color?.value ?? "Karamelová"}`;
+    previewColorChip.textContent = `Farba: ${cream}`;
     previewDecorationChip.textContent = `Dekorácie: ${selectedDecorations.map((option) => option.value).join(", ") || "bez dekorácie"}`;
     previewInscription.textContent = inscriptionInput.value.trim();
     previewInscription.hidden = !inscriptionInput.value.trim();
-    updatePreviewImage();
+    cakeIllustration.dataset.size = size?.value ?? "M";
+    cakeArt.dataset.size = size?.value ?? "M";
+    cakeIllustration.dataset.cream = cream;
+    cakeIllustration.dataset.flavor = flavor;
+    cakeIllustration.setAttribute(
+      "aria-label",
+      `Ilustrácia torty veľkosti ${size?.value ?? "M"} s krémom ${cream} a príchuťou ${flavor}`,
+    );
   };
 
   const selectPhoto = (file) => {

@@ -1393,18 +1393,114 @@ input::placeholder {
   box-shadow: var(--shadow-card);
 }
 
-.preview-image {
+.cake-illustration {
   display: block;
   width: 100%;
   height: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  overflow: visible;
   border-radius: inherit;
-  transition: opacity 0.3s ease;
 }
 
-.preview-image.is-changing {
-  opacity: 0;
+.cake-illustration {
+  --cream-light: #D9AA79;
+  --cream-base: #C68B58;
+  --cream-dark: #9A5535;
+  --sponge-light: #7A4B30;
+  --sponge-dark: #4A2A1B;
+  --filling-light: #FAF5F1;
+  --filling-dark: #E9DDD5;
+}
+
+.cake-illustration[data-cream="Karamelová"] {
+  --cream-light: #D9AA79;
+  --cream-base: #C68B58;
+  --cream-dark: #9A5535;
+}
+
+.cake-illustration[data-cream="Čokoládová"] {
+  --cream-light: #9A6A4D;
+  --cream-base: #7A4B30;
+  --cream-dark: #4A2A1B;
+}
+
+.cake-illustration[data-cream="Latte"] {
+  --cream-light: #D8C6B4;
+  --cream-base: #BBA18A;
+  --cream-dark: #7A5A4A;
+}
+
+.cake-illustration[data-cream="Vanilková"] {
+  --cream-light: #FAF5F1;
+  --cream-base: #E9DDD5;
+  --cream-dark: #A08878;
+}
+
+.cake-illustration[data-flavor="Čokoláda a maliny"] {
+  --sponge-light: #7A4B30;
+  --sponge-dark: #4A2A1B;
+  --filling-light: #FAF5F1;
+  --filling-dark: #E9DDD5;
+}
+
+.cake-illustration[data-flavor="Vanilkový obláčik"] {
+  --sponge-light: #D8C6B4;
+  --sponge-dark: #A08878;
+  --filling-light: #FAF5F1;
+  --filling-dark: #E9DDD5;
+}
+
+.cake-illustration[data-flavor="Pistáciový sen"] {
+  --sponge-light: #A08878;
+  --sponge-dark: #7A5A4A;
+  --filling-light: #FAF5F1;
+  --filling-dark: #E9DDD5;
+}
+
+.cake-illustration[data-flavor="Slaný karamel"] {
+  --sponge-light: #D9AA79;
+  --sponge-dark: #9A5535;
+  --filling-light: #FAF5F1;
+  --filling-dark: #E9DDD5;
+}
+
+.cake-art {
+  transform-box: fill-box;
+  transform-origin: 50% 58%;
+  transition: transform 0.3s ease;
+}
+
+.cake-art[data-size="S"] {
+  transform: scale(0.8);
+}
+
+.cake-art[data-size="L"] {
+  transform: scale(1.2);
+}
+
+#cake-sponge-gradient stop,
+#cake-filling-gradient stop,
+#cake-cream-gradient stop {
+  transition: stop-color 0.3s ease;
+}
+
+.cake-cream-side,
+.cake-cream-top {
+  transition: stroke 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cake-art,
+  #cake-sponge-gradient stop,
+  #cake-filling-gradient stop,
+  #cake-cream-gradient stop,
+  .cake-cream-side,
+  .cake-cream-top {
+    transition: none;
+  }
+}
+
+.plate-shadow {
+  filter: blur(5px);
 }
 
 .preview-inscription {
@@ -2486,8 +2582,8 @@ input::placeholder {
     aspect-ratio: auto;
   }
 
-  .preview-image {
-    aspect-ratio: auto;
+  .cake-illustration {
+    max-height: 260px;
   }
 
   .cake-grid {
