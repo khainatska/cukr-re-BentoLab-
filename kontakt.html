@@ -73,7 +73,7 @@
       <section class="contact-card order-card" aria-labelledby="order-form-title">
         <div class="contact-card-heading">
           <div>
-            <p class="eyebrow">01 / NAPÍŠTE NÁM</p>
+            <p class="eyebrow">01 / NAPÍŠ NÁM</p>
             <h2 id="order-form-title">Objednávkový formulár</h2>
           </div>
           <span class="response-time">Odpovieme do 24 h</span>
@@ -83,12 +83,12 @@
           <div class="form-grid">
             <div class="form-field">
               <label for="meno-priezvisko">Meno a priezvisko*</label>
-              <input id="meno-priezvisko" name="name" type="text" placeholder="Ako vás máme osloviť?" autocomplete="name" aria-describedby="meno-priezvisko-error">
+              <input id="meno-priezvisko" name="name" type="text" placeholder="Ako ťa máme osloviť?" autocomplete="name" aria-describedby="meno-priezvisko-error">
               <p class="field-error" id="meno-priezvisko-error" aria-live="polite"></p>
             </div>
             <div class="form-field">
               <label for="email">E-mail*</label>
-              <input id="email" name="email" type="email" placeholder="vas@email.sk" autocomplete="email" aria-describedby="email-error">
+              <input id="email" name="email" type="email" placeholder="tvoj@email.sk" autocomplete="email" aria-describedby="email-error">
               <p class="field-error" id="email-error" aria-live="polite"></p>
             </div>
             <div class="form-field">
@@ -119,7 +119,7 @@
       <section class="contact-card info-card" aria-labelledby="contact-info-title">
         <div class="contact-card-heading">
           <div>
-            <p class="eyebrow">02 / NÁJDETE NÁS</p>
+            <p class="eyebrow">02 / NÁJDEŠ NÁS</p>
             <h2 id="contact-info-title">Kontaktné info</h2>
           </div>
         </div>
@@ -145,19 +145,21 @@
               <p>Po – Pia: 9:00 – 17:00<br>So: podľa objednávok</p>
             </div>
           </div>
-          <a class="contact-detail contact-detail-link" href="tel:+421900000000">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-            </svg>
-            <span>+421 900 000 000</span>
-          </a>
-          <a class="contact-detail contact-detail-link" href="mailto:info@bentolab.sk">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-            <span>info@bentolab.sk</span>
-          </a>
+          <div class="contact-links">
+            <a class="contact-detail contact-detail-link" href="tel:+421900000000">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              <span>+421 900 000 000</span>
+            </a>
+            <a class="contact-detail contact-detail-link" href="mailto:info@bentolab.sk">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <span>info@bentolab.sk</span>
+            </a>
+          </div>
         </div>
 
         <div class="map-container">
@@ -222,7 +224,7 @@
         </div>
         <form class="newsletter" action="#" method="post">
           <label class="sr-only" for="newsletter-email">E-mail</label>
-          <input id="newsletter-email" type="email" placeholder="Váš e-mail">
+          <input id="newsletter-email" type="email" placeholder="Tvoj e-mail">
           <button type="submit">Odoberať novinky</button>
         </form>
       </div>
