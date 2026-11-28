@@ -14,10 +14,19 @@ if (configurator) {
   const previewColorChip = document.querySelector("#preview-color-chip");
   const previewDecorationChip = document.querySelector("#preview-decoration-chip");
   const photoInput = document.querySelector("#cake-photo");
+  const uploadControl = document.querySelector(".upload-control");
+  const uploadPreview = document.querySelector("#upload-preview");
+  const uploadPreviewImage = document.querySelector("#upload-preview-image");
+  const uploadFileName = document.querySelector("#upload-file-name");
+  const uploadFileSize = document.querySelector("#upload-file-size");
   const uploadStatus = document.querySelector("#upload-status");
+  const changePhotoButton = document.querySelector("#change-photo");
+  const removePhotoButton = document.querySelector("#remove-photo");
   const addToCartButton = document.querySelector("#add-config-to-cart");
   let previewImageRequest = 0;
   let previewImageTransition;
+  let selectedPhoto = null;
+  let photoPreviewUrl = "";
 
   const updatePreviewImage = () => {
     const selectedFlavor = flavorSelect.selectedOptions[0];
@@ -66,6 +75,12 @@ if (configurator) {
     text.length > maxLength ? `${text.slice(0, maxLength).trimEnd()}…` : text
   );
 
+  const formatFileSize = (bytes) => (
+    bytes >= 1024 * 1024
+      ? `${(bytes / (1024 * 1024)).toLocaleString("sk-SK", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} MB`
+      : `${Math.max(1, Math.round(bytes / 1024)).toLocaleString("sk-SK")} kB`
+  );
+
   const updateSummary = () => {
     const size = configurator.querySelector('input[name="size"]:checked');
     const color = configurator.querySelector('input[name="color"]:checked');
@@ -79,13 +94,14 @@ if (configurator) {
       color?.value,
       ...decorations,
       inscriptionInput.value.trim() ? `Nápis: ${inscriptionInput.value.trim()}` : "",
-      photoInput.files?.[0] ? "Fotografia nahratá" : "",
     ].filter(Boolean);
 
     const summaryText = details.join(" · ");
-    summaryDetails.textContent = wishes
-      ? `${summaryText}\nŽelania: ${truncateText(wishes)}`
-      : summaryText;
+    summaryDetails.textContent = [
+      summaryText,
+      selectedPhoto ? `Fotografia: ${truncateText(selectedPhoto.name, 40)}` : "",
+      wishes ? `Želania: ${truncateText(wishes)}` : "",
+    ].filter(Boolean).join("\n");
     estimatedPrice.textContent = `${size?.dataset.price ?? estimatedPrice.dataset.price} €`;
     previewSizeChip.textContent = `Veľkosť: ${size?.value ?? "M"} · ${size?.dataset.portions ?? "10–12 porcií"}`;
     previewColorChip.textContent = `Farba: ${color?.value ?? "Karamelová"}`;
@@ -94,6 +110,79 @@ if (configurator) {
     previewInscription.hidden = !inscriptionInput.value.trim();
     updatePreviewImage();
   };
+
+  const selectPhoto = (file) => {
+    const validTypes = ["image/jpeg", "image/png"];
+    if (!validTypes.includes(file.type) || file.size > 10 * 1024 * 1024) {
+      photoInput.value = "";
+      uploadStatus.textContent = "Vyber JPG alebo PNG do 10 MB.";
+      return;
+    }
+
+    const nextPreviewUrl = URL.createObjectURL(file);
+    if (photoPreviewUrl) {
+      URL.revokeObjectURL(photoPreviewUrl);
+    }
+    photoPreviewUrl = nextPreviewUrl;
+    selectedPhoto = file;
+    uploadPreviewImage.src = photoPreviewUrl;
+    uploadFileName.textContent = file.name;
+    uploadFileName.title = file.name;
+    uploadFileSize.textContent = formatFileSize(file.size);
+    uploadStatus.textContent = "";
+    uploadControl.hidden = true;
+    uploadPreview.hidden = false;
+    photoInput.value = "";
+    updateSummary();
+  };
+
+  const dropTargets = [uploadControl, uploadPreview];
+  let dragDepth = 0;
+  const clearDragState = () => {
+    dragDepth = 0;
+    dropTargets.forEach((target) => target.classList.remove("is-drag-over"));
+  };
+
+  dropTargets.forEach((target) => {
+    target.addEventListener("dragenter", (event) => {
+      if (!Array.from(event.dataTransfer?.types ?? []).includes("Files")) {
+        return;
+      }
+      event.preventDefault();
+      dragDepth += 1;
+      target.classList.add("is-drag-over");
+    });
+
+    target.addEventListener("dragover", (event) => {
+      if (!Array.from(event.dataTransfer?.types ?? []).includes("Files")) {
+        return;
+      }
+      event.preventDefault();
+      event.dataTransfer.dropEffect = "copy";
+    });
+
+    target.addEventListener("dragleave", (event) => {
+      if (!Array.from(event.dataTransfer?.types ?? []).includes("Files")) {
+        return;
+      }
+      dragDepth = Math.max(0, dragDepth - 1);
+      if (dragDepth === 0) {
+        clearDragState();
+      }
+    });
+
+    target.addEventListener("drop", (event) => {
+      if (!Array.from(event.dataTransfer?.types ?? []).includes("Files")) {
+        return;
+      }
+      event.preventDefault();
+      clearDragState();
+      const file = event.dataTransfer.files?.[0];
+      if (file) {
+        selectPhoto(file);
+      }
+    });
+  });
 
   configurator.querySelectorAll(".config-choice").forEach((choice) => {
     choice.addEventListener("change", updateSummary);
@@ -111,21 +200,29 @@ if (configurator) {
 
   photoInput.addEventListener("change", () => {
     const file = photoInput.files?.[0];
-    if (!file) {
-      uploadStatus.textContent = "";
-      updateSummary();
-      return;
+    if (file) {
+      selectPhoto(file);
     }
+  });
 
-    const validTypes = ["image/jpeg", "image/png"];
-    if (!validTypes.includes(file.type) || file.size > 10 * 1024 * 1024) {
-      uploadStatus.textContent = "Vyber JPG alebo PNG súbor do 10 MB.";
-      photoInput.value = "";
-      updateSummary();
-      return;
+  changePhotoButton.addEventListener("click", () => {
+    photoInput.value = "";
+    photoInput.click();
+  });
+
+  removePhotoButton.addEventListener("click", () => {
+    selectedPhoto = null;
+    if (photoPreviewUrl) {
+      URL.revokeObjectURL(photoPreviewUrl);
+      photoPreviewUrl = "";
     }
-
-    uploadStatus.textContent = file.name;
+    uploadPreviewImage.removeAttribute("src");
+    uploadFileName.textContent = "";
+    uploadFileSize.textContent = "";
+    uploadPreview.hidden = true;
+    uploadControl.hidden = false;
+    uploadStatus.textContent = "";
+    photoInput.value = "";
     updateSummary();
   });
 
@@ -138,6 +235,7 @@ if (configurator) {
     ).map((option) => option.value);
     const inscription = inscriptionInput.value.trim();
     const wishes = wishesInput.value.trim();
+    const photoName = selectedPhoto?.name ?? "";
     const price = size?.dataset.price ?? estimatedPrice.dataset.price;
     const configuration = {
       size: size?.value ?? "",
@@ -146,6 +244,7 @@ if (configurator) {
       decorations,
       inscription,
       wishes,
+      photoName,
       price,
     };
 

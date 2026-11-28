@@ -330,6 +330,9 @@
       const wishes = typeof configuration.wishes === "string"
         ? configuration.wishes.trim()
         : "";
+      const photoName = typeof configuration.photoName === "string"
+        ? configuration.photoName
+        : "";
       const uniqueId = window.crypto?.randomUUID?.()
         ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
       const item = {
@@ -337,6 +340,7 @@
         name: "Vlastná torta",
         price,
         wishes,
+        photoName,
         details: [
           `Veľkosť: ${configuration.size}`,
           `Príchuť: ${configuration.flavor}`,
@@ -346,8 +350,12 @@
           `Orientačná cena: ${formatPrice(price)}`,
         ].join(" · "),
       };
-      if (wishes) {
-        item.details += `\nŽelania: ${truncateText(wishes)}`;
+      const optionalDetails = [
+        photoName ? `Fotografia: ${truncateText(photoName, 40)}` : "",
+        wishes ? `Želania: ${truncateText(wishes)}` : "",
+      ].filter(Boolean);
+      if (optionalDetails.length > 0) {
+        item.details += `\n${optionalDetails.join("\n")}`;
       }
 
       addItem(item);

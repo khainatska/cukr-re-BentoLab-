@@ -166,12 +166,31 @@
             <fieldset class="config-step">
               <legend><span class="step-index">4</span> Fotografia na jedlú potlač</legend>
               <label class="upload-control" for="cake-photo">
-                <span class="upload-icon" aria-hidden="true">▧</span>
+                <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 16V4m0 0 4 4m-4-4L8 8M4 16v4h16v-4"/>
+                </svg>
                 <span class="upload-copy"><strong>Nahrať fotografiu</strong><small>JPG alebo PNG · max. 10 MB</small></span>
-                <span class="upload-action" aria-hidden="true">⇧</span>
+                <svg class="upload-action" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 16V4m0 0 4 4m-4-4L8 8M4 16v4h16v-4"/>
+                </svg>
               </label>
-              <input class="sr-only" id="cake-photo" name="photo" type="file" accept="image/jpeg,image/png">
+              <input class="sr-only" id="cake-photo" name="photo" type="file" accept="image/jpeg,image/png" aria-describedby="upload-status upload-instructions">
+              <div class="upload-preview" id="upload-preview" hidden>
+                <img class="upload-preview-image" id="upload-preview-image" alt="">
+                <div class="upload-preview-content">
+                  <p class="upload-file-info">
+                    <span class="upload-file-name" id="upload-file-name"></span>
+                    <span aria-hidden="true">·</span>
+                    <span class="upload-file-size" id="upload-file-size"></span>
+                  </p>
+                  <div class="upload-preview-actions">
+                    <button class="upload-action-button" id="change-photo" type="button" aria-label="Zmeniť fotografiu">Zmeniť</button>
+                    <button class="upload-action-button" id="remove-photo" type="button" aria-label="Odstrániť fotografiu">Odstrániť</button>
+                  </div>
+                </div>
+              </div>
               <p class="upload-status" id="upload-status" aria-live="polite"></p>
+              <p class="upload-instructions" id="upload-instructions">Fotografiu nám pošli e-mailom na info@bentolab.sk po odoslaní objednávky.</p>
             </fieldset>
 
             <fieldset class="config-step">

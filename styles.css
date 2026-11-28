@@ -1733,6 +1733,8 @@ input::placeholder {
 
 .upload-control {
   min-height: 72px;
+  min-width: 0;
+  max-width: 100%;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -1742,12 +1744,107 @@ input::placeholder {
   background: var(--card);
   color: var(--text-secondary);
   cursor: pointer;
+  box-sizing: border-box;
+}
+
+.upload-control[hidden],
+.upload-preview[hidden] {
+  display: none;
+}
+
+.upload-control:has(+ #cake-photo:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.upload-control.is-drag-over,
+.upload-preview.is-drag-over {
+  border-color: var(--accent);
+  background: var(--block);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .upload-icon,
 .upload-action {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
   color: var(--accent);
-  font-size: 22px;
+}
+
+.upload-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  max-width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-field);
+  background: var(--card);
+  box-sizing: border-box;
+}
+
+.upload-preview-image {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  border-radius: var(--radius-small);
+  object-fit: cover;
+}
+
+.upload-preview-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.upload-file-info {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  min-width: 0;
+  margin: 0;
+}
+
+.upload-file-name {
+  min-width: 0;
+  flex: 0 1 auto;
+  overflow: hidden;
+  color: var(--text);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.upload-file-size {
+  flex: none;
+  color: var(--text-secondary);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.upload-preview-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.upload-action-button {
+  min-width: 80px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-pill);
+  background: var(--card);
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.upload-action-button:hover {
+  background: var(--block);
 }
 
 .upload-copy {
@@ -1771,13 +1868,21 @@ input::placeholder {
 .upload-status {
   min-height: 0;
   margin: 0;
-  color: var(--text-secondary);
+  color: #8B3A32;
   font-size: 14px;
   overflow-wrap: anywhere;
 }
 
 .upload-status:not(:empty) {
   margin-top: 5px;
+}
+
+.upload-instructions {
+  margin: 8px 0 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .order-summary {
