@@ -1477,6 +1477,63 @@ input::placeholder {
   transform: scale(1.2);
 }
 
+.cake-decoration {
+  opacity: 0;
+  pointer-events: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.82);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.cake-illustration[data-has-flowers="true"] .cake-flowers,
+.cake-illustration[data-has-pearls="true"] .cake-pearls,
+.cake-illustration[data-has-bow="true"] .cake-bow {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.flower-petal {
+  fill: #FAF5F1;
+  stroke: #E0D0C6;
+  stroke-width: 0.8;
+}
+
+.cake-flower:nth-child(2) .flower-petal {
+  fill: #E9DDD5;
+}
+
+.flower-center {
+  fill: #9A5535;
+  stroke: #FAF5F1;
+  stroke-width: 0.8;
+}
+
+.cake-pearl {
+  fill: url(#cake-pearl-gradient);
+  stroke: #E0D0C6;
+  stroke-width: 0.8;
+}
+
+.pearl-glint {
+  fill: #FFFFFF;
+  fill-opacity: 0.85;
+}
+
+.cake-inscription-board {
+  opacity: 0;
+  pointer-events: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.96);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.cake-illustration[data-has-inscription="true"] .cake-inscription-board {
+  opacity: 1;
+  transform: scale(1);
+}
+
 #cake-sponge-gradient stop,
 #cake-filling-gradient stop,
 #cake-cream-gradient stop {
@@ -1490,6 +1547,8 @@ input::placeholder {
 
 @media (prefers-reduced-motion: reduce) {
   .cake-art,
+  .cake-decoration,
+  .cake-inscription-board,
   #cake-sponge-gradient stop,
   #cake-filling-gradient stop,
   #cake-cream-gradient stop,
@@ -1501,30 +1560,6 @@ input::placeholder {
 
 .plate-shadow {
   filter: blur(5px);
-}
-
-.preview-inscription {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  max-width: calc(100% - 32px);
-  margin: 0;
-  padding: 8px 16px;
-  border: 1px solid var(--border-card);
-  border-radius: var(--radius-field);
-  background: var(--card);
-  color: var(--text);
-  font-family: var(--font-heading);
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.4;
-  text-align: center;
-  overflow-wrap: anywhere;
-  transform: translateX(-50%);
-}
-
-.preview-inscription[hidden] {
-  display: none;
 }
 
 .preview-chips {
