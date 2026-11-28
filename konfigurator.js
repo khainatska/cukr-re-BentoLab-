@@ -104,7 +104,7 @@ if (configurator) {
 
     const validTypes = ["image/jpeg", "image/png"];
     if (!validTypes.includes(file.type) || file.size > 10 * 1024 * 1024) {
-      uploadStatus.textContent = "Vyberte JPG alebo PNG súbor do 10 MB.";
+      uploadStatus.textContent = "Vyber JPG alebo PNG súbor do 10 MB.";
       photoInput.value = "";
       updateSummary();
       return;

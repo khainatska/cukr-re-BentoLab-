@@ -1489,12 +1489,18 @@ input::placeholder {
 }
 
 .step-count {
+  display: inline-flex;
   flex: none;
+  align-items: center;
+  justify-content: center;
   padding: 6px 12px;
+  border: 0;
   border-radius: var(--radius-pill);
   background: var(--block);
   color: var(--text-secondary);
   font-size: 14px;
+  line-height: 1.4;
+  white-space: nowrap;
 }
 
 #cake-configurator {
